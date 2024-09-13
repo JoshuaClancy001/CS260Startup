@@ -23,8 +23,8 @@ This is what it will look like when you are on the Friends tab
 
 - Secure login over HTTPS
 - Ability to set time goals for practicing 
-- Tracks your practice streak and notifies others when new high is reached 
-- Scoreboard to see who has the longest practice streak
+- Tracks your practice streak and notifies others in your friend group when new high is reached 
+- Scoreboard to see who has the longest practice streak (overall and among friends)
 - Folder connected to google drive to store music documents
 
 
@@ -41,29 +41,8 @@ I am using the required technology in the following ways:
    - google drive implementation 
    - retrieving practice streak scores 
 - **DB/Login** - Store users, practice times, current practice streak, and top streak in database. Register and login users. Credentials securely stored in database so that people can't add practice times unless authorized by the login
-**WebSocket** - Whenever a user gets a new highest practice streak, a message is sent to everyone. 
+**WebSocket** - Whenever a user gets a new highest practice streak, a message is sent to everyone in their freiend group. People in friend groups can send messages to each other
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-What did I learn from this assignemnt?
-   - not much, I've kinda done all of this before but the conflicting and merging stuff was new so that was helpful to know
 
 
 Elastic IP for Server

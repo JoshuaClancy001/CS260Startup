@@ -8,7 +8,7 @@ Have you ever wanted to learn an instrument, or improve at singing but you lack 
 
 ### Design 
 
-![Mock](WebsiteOutlinePictures/Homepage.pdf)
+![Mock](WebsiteOutlinePictures/Homepage.jpeg)
 
 ### Key Features
 

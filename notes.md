@@ -43,7 +43,16 @@ I am using the required technology in the following ways:
 - **DB/Login** - Store users, practice times, current practice streak, and top streak in database. Register and login users. Credentials securely stored in database so that people can't add practice times unless authorized by the login
 **WebSocket** - Whenever a user gets a new highest practice streak, a message is sent to everyone in their freiend group. People in friend groups can send messages to each other
 
+## HTML Deliverable
 
+Added:
+ - guitar favicon
+ - index.html - Home page where you can choose whether to login or register a new user
+ - login.html - Login page where you can log in with username and password or go back to home page
+ - register.html - Register page where you can register with username, password, and email or go back to home page
+ - logpage.html - Practice Log page where you can set goals, access google drive, and navigate between the Practice Log, Scoreboard, and Friends List pages
+ - scoreboard.html - Scoreboard page where you can view the overall scoreboard, or your friend group scoreboard
+ - friendslist.html - Friends List page where you can view your friends, add friends, and send messages to your friends
 
 Elastic IP for Server
    - 52.21.62.117

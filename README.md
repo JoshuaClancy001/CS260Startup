@@ -48,6 +48,10 @@ I am using the required technology in the following ways:
 
 ## HTML Deliverable
 
+For this deliverable I built out the structure of my application using HTML
+
+**HTML pages** - 6 HTML pages for Index,Login,Register,Home
+
 Added:
  - guitar favicon
  - index.html - Home page where you can choose whether to login or register a new user

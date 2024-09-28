@@ -50,25 +50,25 @@ I am using the required technology in the following ways:
 
 For this deliverable I built out the structure of my application using HTML
 
-**HTML pages** - 6 HTML pages for Index,Login,Register,Home(logpage),FriendsList,Scoreboard,Message
+- **HTML pages** - 6 HTML pages for Index,Login,Register,Home(logpage),FriendsList,Scoreboard,Message
    - Index - Displays the option to login or register a new user
    - Register - Displays the option to register a user providing username,password, and email
    - Home - Displays the practice log page which is very empty and non functional right now
    - FriendsList - Displays your list of friends and the option to message one of them
    - Scoreboard - Displays Either the total scoreboard or friends scoreboard
    - Message - Is just a place holder for the websocket sending messages to friends 
-**Links** - The different buttons/ links take you to different places on the Application
+   - Google Drive - Is just a place holder for API call later on
+- **Links** - The different buttons/ links take you to different places on the Application
    - Menu - Once logged in you can go to Home,Scoreboard, or FriendsList throught the menu
    - Logout/Exit - this allows you to go back to index from anywhere once not in index
    - Login button goes to login.html, Register button goes to register.html
    - A link to my github is displayed on the index page
-**Placeholder for 3rd party service**
+- **Placeholder for 3rd party service**
    - Google drive box that pops up an alert that says it doesnt work yet
-**Application images** 
+- **Application images** 
    - Piano and guitar added to home page of application, not formated 
-**DB/Login**
+- **DB/Login**
    - Info from login stored in a database and username displayed in top corner
-   - Streak number would be pulled from database and displayed
-   - Username is displayed under the title of each page once logged in(Hard Coded for JJC123)
-**WebSocket**
+   - Streak number would be pulled from database and displayed as well of the scoreboard information
+- **WebSocket**
    - When you click on message next to a friends name, another page pops up as a placeholder for websocket messaging

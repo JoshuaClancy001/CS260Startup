@@ -50,13 +50,25 @@ I am using the required technology in the following ways:
 
 For this deliverable I built out the structure of my application using HTML
 
-**HTML pages** - 6 HTML pages for Index,Login,Register,Home
-
-Added:
- - guitar favicon
- - index.html - Home page where you can choose whether to login or register a new user
- - login.html - Login page where you can log in with username and password or go back to home page
- - register.html - Register page where you can register with username, password, and email or go back to home page
- - logpage.html - Practice Log page where you can set goals, access google drive, and navigate between the Practice Log, Scoreboard, and Friends List pages
- - scoreboard.html - Scoreboard page where you can view the overall scoreboard, or your friend group scoreboard
- - friendslist.html - Friends List page where you can view your friends, add friends, and send messages to your friends
+**HTML pages** - 6 HTML pages for Index,Login,Register,Home(logpage),FriendsList,Scoreboard,Message
+   - Index - Displays the option to login or register a new user
+   - Register - Displays the option to register a user providing username,password, and email
+   - Home - Displays the practice log page which is very empty and non functional right now
+   - FriendsList - Displays your list of friends and the option to message one of them
+   - Scoreboard - Displays Either the total scoreboard or friends scoreboard
+   - Message - Is just a place holder for the websocket sending messages to friends 
+**Links** - The different buttons/ links take you to different places on the Application
+   - Menu - Once logged in you can go to Home,Scoreboard, or FriendsList throught the menu
+   - Logout/Exit - this allows you to go back to index from anywhere once not in index
+   - Login button goes to login.html, Register button goes to register.html
+   - A link to my github is displayed on the index page
+**Placeholder for 3rd party service**
+   - Google drive box that pops up an alert that says it doesnt work yet
+**Application images** 
+   - Piano and guitar added to home page of application, not formated 
+**DB/Login**
+   - Info from login stored in a database and username displayed in top corner
+   - Streak number would be pulled from database and displayed
+   - Username is displayed under the title of each page once logged in(Hard Coded for JJC123)
+**WebSocket**
+   - When you click on message next to a friends name, another page pops up as a placeholder for websocket messaging

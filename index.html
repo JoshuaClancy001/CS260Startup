@@ -1,31 +1,54 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css2?family=Oleo+Script+Swash+Caps&display=swap" rel="stylesheet">
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="styles.css">
     <title>JamPlan</title>
     <link rel="icon" href="guitar_1026034.png" />
-    <h1>JamPlan</h1>
+    <style>
+        button {
+            width: 200px;
+            height: 50px;
+            font-size: 20px;
+        }
+    </style>
 </head>
-<body>
-    <main>
-        <h2>Login or Register a new Account</h2>
-        <form method="get" action="login.html">
-            <button type="submit">Login</button>
-        </form>
-        <br></br>
-        <form method="get" action="register.html">
-            <button type="submit">Register</button>
-        </form>
-    </main>
-    <br></br>
-    <h3>Josh Clancy's Repository</h3>
-    <a href="https://github.com/JoshuaClancy001/startup" target="_blank">Github</a></li>
-    <br> <br> <br> <br> <br> <br> <br>
+<header>
+    <h1 class="title">JamPlan</h1>
+</header>
 
-    <img src="guitarimage.png" alt="Picture of a guitar" width="200">
-    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-    <img src="pianoimage.jpeg" alt="Picture of a piano" width="200">
-    
+<body>
+    <main class="main-container">
+        <div class="left-column">
+            <img src="guitarimage.png" alt="Picture of a guitar" width="200">
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <img src="pianoimage.jpeg" alt="Picture of a piano" width="200">
+        </div>
+        <div class="right-column">
+            <h2 id="indexHeader">Login or Register a new Account</h2>
+            <div class="">
+                <form method="get" action="login.html">
+                    <button type="submit" class="btn btn-info">Login</button>
+                </form>
+                <br></br>
+                <form method="get" action="register.html">
+                    <button type="submit" class="btn btn-success">Register</button>
+                </form>
+            </div>
+
+            <br></br>
+        </div>
+    </main>
+        <footer>
+            <div class="index-footer"></div>
+                <span class="author-name">Josh Clancy</span>
+                <a href="https://github.com/JoshuaClancy001/startup" target="_blank">Source</a></li>
+            </div>
+        </footer>
 </body>
+
 </html>

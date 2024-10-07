@@ -12,7 +12,7 @@
     <style>
         button {
             width: 200px;
-            height: 50px;
+            height: 50px;  
             font-size: 20px;
         }
     </style>
@@ -24,13 +24,14 @@
 <body>
     <main class="main-container">
         <div class="left-column">
-            <img src="guitarimage.png" alt="Picture of a guitar" width="200">
-            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-            <img src="pianoimage.jpeg" alt="Picture of a piano" width="200">
+            <div class="image-container">
+                <img id="guitar-picture" src="guitarimage.png" alt="Picture of a guitar" width="200">
+            </div>
+            <img id="piano-picture" src="pianoimage.jpeg" alt="Picture of a piano" width="200">
         </div>
         <div class="right-column">
             <h2 id="indexHeader">Login or Register a new Account</h2>
-            <div class="">
+            <div class="login-register-buttons">
                 <form method="get" action="login.html">
                     <button type="submit" class="btn btn-info">Login</button>
                 </form>
@@ -46,7 +47,7 @@
         <footer>
             <div class="index-footer"></div>
                 <span class="author-name">Josh Clancy</span>
-                <a href="https://github.com/JoshuaClancy001/startup" target="_blank">Source</a></li>
+                <a href="https://github.com/JoshuaClancy001/startup" target="_blank">Github</a></li>
             </div>
         </footer>
 </body>

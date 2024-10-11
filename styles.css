@@ -69,12 +69,50 @@ h2{
     height: calc(100vh - 150px);
 }
 
+.main-container-logpage{
+    flex: 1 calc(100vh - 110px);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: calc(100vh - 150px);
+}
+
+.logpage-nav{
+    display: flex;
+    position: absolute;
+    flex-direction: column;
+    top: 2%;
+    left: 0;
+    width: 100%;
+    padding: 10px;
+}
+menu{
+    display: flex;
+    flex-direction: row;
+    list-style-type: none;
+}
+
+menu li {
+    margin-right: 20px; /* Add space between menu items */
+}
+
+.nav-item{
+    color: lightblue;
+    font-size: 1.3em;
+}
+.nav-item-active{
+    color:white;
+    font-size: 1.3em;
+}
+
 .login-form{
     width: 50%;
     margin: 0 auto;
     background-color: lightblue;
     padding: 20px;
 }
+
 
 .login-register-buttons{
     display: flex;

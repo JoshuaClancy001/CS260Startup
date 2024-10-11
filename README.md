@@ -72,3 +72,18 @@ For this deliverable I built out the structure of my application using HTML
    - Streak number would be pulled from database and displayed as well of the scoreboard information
 - **WebSocket**
    - When you click on message next to a friends name, another page pops up as a placeholder for websocket messaging
+
+## CSS Deliverable
+
+- **Header,footer, and main content body** - properly styled elements using CSS
+- **Navigation Elements** - properly styled elements using CSS
+   - The nav element for current page is white but the rest are light blue and they are placed in the top left of the page
+- **Responsive to window resizing** - properly inplemented with CSS
+   - When the window is shorter than a certain height, or width, the elements stay or dissapear depending on their importance on the page. The header and footer also dissapear after a certain height is crossed using media queries
+- **Application Elements** - properly styled with CSS
+- **Application Text Content** - properly styled with CSS
+   - Most of the text is changed into a different font imported from google fonts
+- **Application Images** - properly styled with CSS
+   - images size was changed and location on the screen was change for visual appeal
+   
+

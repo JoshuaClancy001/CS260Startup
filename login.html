@@ -14,20 +14,22 @@
     <h1 class="title">JamPlan</h1>
 </header>
 <body>
-    <main class="main-container">
-        <h2>Login</h2>
-        <form method="get" action="logpage.html">
-            <span>Username </span>
-            <input type="text" placeholder="name@gmail.com">
-            <br></br>
-            <span>Password</span>
-            <input type="text" placeholder="minimum 8 characters">
-            <br></br><br></br>
-            <button type="submit">Login</button>
-        </form>
-        <br></br>
+    <main class="main-container-login">
+        <h2 class="loginHeader">Login</h2>
+        <form method="get" action="logpage.html" class="login-form" >
+            <div class="mb-3">
+              <label style="font-family: 'Oleo Script', cursive;" for="exampleInputUsername1" class="form-label">Username</label>
+              <input type="username" class="form-control" id="exampleInputUsername1" aria-describedby="usernameHelp">
+            </div>
+            <div class="mb-3">
+              <label style="font-family: 'Oleo Script', cursive;" for="exampleInputPassword1" class="form-label">Password</label>
+              <input type="password" class="form-control" id="exampleInputPassword1">
+            </div>
+            <button type="submit" class="btn btn-primary" style="color:lightblue; background-color: white; border-color: white;">Submit</button>
+          </form>
+          <br>
         <form method="get" action="index.html">
-            <button type="submit">Exit</button>
+            <button type="submit" class="btn btn-success" style="background-color: lightgreen; border-color: lightgreen; opacity: .8;">Exit</button>
         </form>
     </main>
     <footer>

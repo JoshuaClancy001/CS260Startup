@@ -81,7 +81,7 @@ For this deliverable I built out the structure of my application using HTML
 - **Navigation Elements** - properly styled elements using CSS
    - The nav element for current page is white but the rest are light blue and they are placed in the top left of the page using CSS
 - **Responsive to window resizing** - properly inplemented with CSS
-   - When the window is shorter than a certain height, or width, the elements stay or dissapear depending on their importance on the page. The header and footer also dissapear after a certain height is crossed using media queries
+   - When the window is shorter than a certain height, or width, the elements stay or dissapear depending on page. The header and footer also dissapear after a certain height is crossed using media queries
 - **Application Elements** - properly styled with CSS
    - Many buttons added throughout using bootstrap
    - Multiple tables styled with bootstrap and modified for my liking

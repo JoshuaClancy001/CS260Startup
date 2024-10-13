@@ -76,14 +76,20 @@ For this deliverable I built out the structure of my application using HTML
 ## CSS Deliverable
 
 - **Header,footer, and main content body** - properly styled elements using CSS
+   - Added Header with Black background and fancy font that displays the website name
+   - Added Footer with Black background and displays name and github on opposite sides using CSS
 - **Navigation Elements** - properly styled elements using CSS
-   - The nav element for current page is white but the rest are light blue and they are placed in the top left of the page
+   - The nav element for current page is white but the rest are light blue and they are placed in the top left of the page using CSS
 - **Responsive to window resizing** - properly inplemented with CSS
    - When the window is shorter than a certain height, or width, the elements stay or dissapear depending on their importance on the page. The header and footer also dissapear after a certain height is crossed using media queries
 - **Application Elements** - properly styled with CSS
+   - Many buttons added throughout using bootstrap
+   - Multiple tables styled with bootstrap and modified for my liking
 - **Application Text Content** - properly styled with CSS
-   - Most of the text is changed into a different font imported from google fonts
+   - All of the text is changed into a different font imported from google fonts
+   - Text size is adjusted for specific needs
 - **Application Images** - properly styled with CSS
    - images size was changed and location on the screen was change for visual appeal
-   
+   - images disappear when the window resizes
+   - cut out bottom right corner of guitar picture to make it look better
 

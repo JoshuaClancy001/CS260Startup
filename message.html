@@ -5,18 +5,103 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>JamPlan</title>
     <link rel="icon" href="guitar_1026034.png" />
-    <h1>Messaging Placeholder</h1>
+    <link href="https://fonts.googleapis.com/css2?family=Oleo+Script+Swash+Caps&display=swap" rel="stylesheet">
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        body {
+            font-family: 'Oleo Script', cursive;
+            background-color:white;
+            margin: 0;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+
+        .title {
+            font-size: 4em;
+            margin: 0;
+            color: lightblue;
+        }
+
+        .main-container {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+
+        .main-container span {
+            font-size: 1.5em;
+            margin-bottom: 10px;
+        }
+
+        .main-container input[type="text"] {
+            font-size: 1.2em;
+            padding: 10px;
+            margin-bottom: 10px;
+            width: 100%;
+            max-width: 400px;
+            border: 2px solid #333;
+            border-radius: 5px;
+        }
+
+        .main-container button {
+            font-size: 1.2em;
+            padding: 10px 20px;
+            margin: 10px;
+            background-color: lightblue;
+            border: none;
+            border-radius: 5px;
+            color: #333;
+            cursor: pointer;
+        }
+
+        .main-container button:hover {
+            background-color: white;
+        }
+
+        .author-name {
+            flex-grow: 1;
+        }
+
+        .index-footer {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 100%;
+        }
+
+        .index-footer a {
+            color: lightblue;
+            text-decoration: none;
+            margin-left: 10px;
+        }
+
+        .index-footer a:hover {
+            text-decoration: underline;
+        }
+    </style>
 </head>
 <body>
-    <main>
-        <span>Message </span>
+    <header>
+        <h1 class="title">JamPlan</h1>
+    </header>
+    <main class="main-container">
+        <span>Message</span>
         <input type="text" placeholder="type a message">
-        <button type="submit">send</button>
-        <br></br>
+        <button type="submit">Send</button>
         <form method="get" action="friendslistpage.html">
             <button type="submit">Exit</button>
         </form>
     </main>
-    
+    <footer>
+        <div class="index-footer">
+            <span class="author-name">Josh Clancy</span>
+            <a href="https://github.com/JoshuaClancy001/startup" target="_blank">Github</a>
+        </div>
+    </footer>
 </body>
 </html>

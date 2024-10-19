@@ -386,30 +386,521 @@ Attach an event listener: Use addEventListener to listen for an event (e.g., cli
 
 
 
-What does the following line of Javascript do using a # selector?
-Which of the following are true? (mark all that are true about the DOM)
-By default, the HTML span element has a default CSS display property value of: 
-How would you use CSS to change all the div elements to have a background color of red?
-How would you display an image with a hyperlink in HTML?
-In the CSS box model, what is the ordering of the box layers starting at the inside and working out?
-Given the following HTML, what CSS would you use to set the text "trouble" to green and leave the "double" text unaffected?
-What will the following code output when executed using a for loop and console.log?
-How would you use JavaScript to select an element with the id of “byu” and change the text color of that element to green?
-What is the opening HTML tag for a paragraph, ordered list, unordered list, second level heading, first level heading, third level heading?
-How do you declare the document type to be html?
-What is valid javascript syntax for if, else, for, while, switch statements?
-What is the correct syntax for creating a javascript object?
-Is it possible to add new properties to javascript objects?
-If you want to include JavaScript on an HTML page, which tag do you use?
-Given the following HTML, what JavaScript could you use to set the text "animal" to "crow" and leave the "fish" text unaffected?
-Which of the following correctly describes JSON?
-What does the console command chmod, pwd, cd, ls, vim, nano, mkdir, mv, rm, man, ssh, ps, wget, sudo  do?
-Which of the following console command creates a remote shell session?
-Which of the following is true when the -la parameter is specified for the ls console command?
-Which of the following is true for the domain name banana.fruit.bozo.click, which is the top level domain, which is a subdomain, which is a root domain?
-Is a web certificate is necessary to use HTTPS.
-Can a DNS A record can point to an IP address or another A record.
-Port 443, 80, 22 is reserved for which protocol?
+### What does the following line of Javascript do using a # selector?
+
+1. How the # Selector Works
+The # symbol is followed by the ID of the element you want to style. Since IDs are unique within an HTML document, the # selector can only be applied to one element.
+```HTML
+<div id="header">This is the header</div>
+<p id="intro">This is the introduction paragraph</p>
+```
+```CSS
+#header {
+  background-color: lightblue;
+  font-size: 24px;
+}
+
+#intro {
+  color: green;
+  font-style: italic;
+}
+```
+Here, the CSS styles the element with the id="header" and the element with id="intro":
+
+The #header rule sets the background color and font size for the <div>.
+The #intro rule changes the text color and style of the paragraph <p>.
+
+2. Key Characteristics of the # Selector
+The # selector targets a single element based on its ID, which should be unique within the HTML document.
+IDs are case-sensitive, so #header and #Header would refer to different elements if they existed.
+
+### Which of the following are true? (mark all that are true about the DOM)
+
+# Document Object Model
+
+The Document Object Model (DOM) is an object representation of the HTML elements that the browser uses to render the display. The browser also exposes the DOM to external code so that you can write programs that dynamically manipulate the HTML.
+
+The browser provides access to the DOM through a global variable name `document` that points to the root element of the DOM. If you open the browser's debugger console window and type the variable name `document` you will see the DOM for the document the browser is currently rendering.
+
+```html
+> document
+
+<html lang="en">
+  <body>
+    <p>text1 <span>text2</span></p>
+    <p>text3</p>
+  </body>
+</html>
+```
+
+```css
+p {
+  color: red;
+}
+```
+
+For everything in an HTML document there is a node in the DOM. This includes elements, attributes, text, comments, and whitespace. All of these nodes form a big tree, with the document node at the top.
+
+![dom](dom.jpg)
+
+## Accessing the DOM
+
+Every element in an HTML document implements the DOM Element interface, which is derived from the DOM Node interface. The [DOM Element Interface](https://developer.mozilla.org/en-US/docs/Web/API/Element) provides the means for iterating child elements, accessing the parent element, and manipulating the element's attributes. From your JavaScript code, you can start with the `document` variable and walk through every element in the tree.
+
+```js
+function displayElement(el) {
+  console.log(el.tagName);
+  for (const child of el.children) {
+    displayElement(child);
+  }
+}
+
+displayElement(document);
+```
+
+You can provide a CSS selector to the `querySelectorAll` function in order to select elements from the document. The `textContent` property contains all of the element's text. You can even access a textual representation of an element's HTML content with the `innerHTML` property.
+
+```js
+const listElements = document.querySelectorAll('p');
+for (const el of listElements) {
+  console.log(el.textContent);
+}
+```
+
+## Modifying the DOM
+
+The DOM supports the ability to insert, modify, or delete the elements in the DOM. To create a new element you first create the element on the DOM document. You then insert the new element into the DOM tree by appending it to an existing element in the tree.
+
+```js
+function insertChild(parentSelector, text) {
+  const newChild = document.createElement('div');
+  newChild.textContent = text;
+
+  const parentElement = document.querySelector(parentSelector);
+  parentElement.appendChild(newChild);
+}
+
+insertChild('#courses', 'new course');
+```
+
+To delete elements call the `removeChild` function on the parent element.
+
+```js
+function deleteElement(elementSelector) {
+  const el = document.querySelector(elementSelector);
+  el.parentElement.removeChild(el);
+}
+
+deleteElement('#courses div');
+```
+
+## Injecting HTML
+
+The DOM also allows you to inject entire blocks of HTML into an element. The following code finds the first `div` element in the DOM and replaces all the HTML it contains.
+
+```js
+const el = document.querySelector('div');
+el.innerHTML = '<div class="injected"><b>Hello</b>!</div>';
+```
+
+However, directly injecting HTML as a block of text is a common attack vector for hackers. If an untrusted party can inject JavaScript anywhere in your application then that JavaScript can represent itself as the current user of the application. The attacker can then make requests for sensitive data, monitor activity, and steal credentials. The example below shows how the img element can be used to launch an attack as soon as the page is loaded.
+
+```html
+<img src="bogus.png" onerror="console.log('All your base are belong to us')" />
+```
+
+If you are injecting HTML, make sure that it cannot be manipulated by a user. Common injection paths include HTML input controls, URL parameters, and HTTP headers. Either sanitize any HTML that contains variables, or simply use DOM manipulation functions instead of using `innerHTML`.
+
+## Event Listeners
+
+All DOM elements support the ability to attach a function that gets called when an event occurs on the element. These functions are called [event listeners] Here is an example of an event listener that gets called when an element gets clicked.
+
+```js
+const submitDataEl = document.querySelector('#submitData');
+submitDataEl.addEventListener('click', function (event) {
+  console.log(event.type);
+});
+```
+
+There are lots of possible events that you can add a listener to. This includes things like mouse, keyboard, scrolling, animation, video, audio, WebSocket, and clipboard events. You can see the full list on [MDN](https://developer.mozilla.org/en-US/docs/Web/Events). Here are a few of the more commonly used events.
+
+| Event Category | Description           |
+| -------------- | --------------------- |
+| Clipboard      | Cut, copied, pasted   |
+| Focus          | An element gets focus |
+| Keyboard       | Keys are pressed      |
+| Mouse          | Click events          |
+| Text selection | When text is selected |
+
+You can also add event listeners directly in the HTML. For example, here is a `onclick` handler that is attached to a button.
+
+```html
+<button onclick='alert("clicked")'>click me</button>
+```
+
+### By default, the HTML span element has a default CSS display property value of: 
+
+By default, the HTML <span> element has a CSS display property value of inline.
+
+Explanation:
+Inline Element: This means that the <span> element does not start on a new line and only takes up as much width as necessary. It can contain text and other inline elements without breaking the flow of content.
+Usage: <span> is typically used to apply styles or manipulate small portions of text within a block of text without affecting the surrounding layout.
+
+
+### How would you use CSS to change all the div elements to have a background color of red?
+
+```CSS
+/* styles.css */
+div {
+    background-color: red;
+}
+```
+### How would you display an image with a hyperlink in HTML?
+
+```HTML
+<a href="https://www.example.com">
+    <img src="https://via.placeholder.com/150" alt="Placeholder Image" width="150" height="150" title="Click to visit Example.com" />
+</a>
+```
+
+### In the CSS box model, what is the ordering of the box layers starting at the inside and working out?
+
+In the CSS box model, the ordering of the box layers, starting from the inside and working outward, is as follows:
+
+Content: This is the innermost layer that contains the actual content of the element, such as text, images, or other media.
+
+Padding: This layer surrounds the content and provides space between the content and the border. Padding is transparent and can have different values for each side (top, right, bottom, left).
+
+Border: This layer wraps around the padding (if any) and the content. The border can have different styles, widths, and colors. It defines the outer edge of the element.
+
+Margin: This is the outermost layer that creates space between the element's border and other surrounding elements. Like padding, margins are also transparent and can be set individually for each side.
+
+
+### Given the following HTML, what CSS would you use to set the text "trouble" to green and leave the "double" text unaffected?
+
+```CSS
+.green-text {
+    color: green;
+}
+```
+
+### What will the following code output when executed using a for loop and console.log?
+
+```js
+for (let i = 1; i <= 5; i++) {
+    console.log("Current number is: " + i);
+}
+```
+
+```csharp
+Current number is: 1
+Current number is: 2
+Current number is: 3
+Current number is: 4
+Current number is: 5
+```
+
+### How would you use JavaScript to select an element with the id of “byu” and change the text color of that element to green?
+
+```HTML
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Change Text Color Example</title>
+</head>
+<body>
+
+    <p id="byu">This text will change color to green.</p>
+    
+    <script>
+        // JavaScript code to change text color
+        const element = document.getElementById("byu");
+        element.style.color = "green";  // Change text color to green
+    </script>
+
+</body>
+</html>
+```
+
+### What is the opening HTML tag for a paragraph, ordered list, unordered list, second level heading, first level heading, third level heading?
+
+Summary of Opening Tags:
+Paragraph: <p>
+Ordered List: <ol>
+Unordered List: <ul>
+Second Level Heading: <h2>
+First Level Heading: <h1>
+Third Level Heading: <h3>
+
+### How do you declare the document type to be html?
+
+Using <!DOCTYPE html>
+
+```HTML
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My HTML Document</title>
+</head>
+<body>
+    <h1>Welcome to My Website</h1>
+    <p>This is a simple HTML document.</p>
+</body>
+</html>
+```
+
+### What is valid javascript syntax for if, else, for, while, switch statements?
+
+Pretty much idential to languages like C++ and Java
+
+```js
+
+switch (expression) {
+    case value1:
+        // code to execute if expression === value1
+        break;
+    case value2:
+        // code to execute if expression === value2
+        break;
+    default:
+        // code to execute if expression doesn't match any case
+}
+```
+### What is the correct syntax for creating a javascript object?
+
+```js
+
+const objectName = {
+    property1: value1,
+    property2: value2,
+    method1: function() {
+        // code to execute
+    }
+};
+```
+
+```js
+function ObjectName(property1, property2) {
+    this.property1 = property1;
+    this.property2 = property2;
+    this.method1 = function() {
+        // code to execute
+    };
+}
+```
+```js
+
+class ClassName {
+    constructor(property1, property2) {
+        this.property1 = property1;
+        this.property2 = property2;
+    }
+    
+    method1() {
+        // code to execute
+    }
+}
+```
+
+
+### Is it possible to add new properties to javascript objects?
+
+YES
+
+Dot Notation: Use object.propertyName to add a new property.
+Bracket Notation: Use object["propertyName"] to add a new property, especially useful for dynamic keys.
+Object.assign(): Merge properties from one or more objects into an existing object.
+Spread Operator: Create a new object that combines properties from existing objects with new properties.
+
+
+### If you want to include JavaScript on an HTML page, which tag do you use?
+
+```HTML
+<script>
+   javascript
+</script>
+```
+
+### Given the following HTML, what JavaScript could you use to set the text "animal" to "crow" and leave the "fish" text unaffected?
+
+```HTML
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Change Text Example</title>
+</head>
+<body>
+
+    <p id="animal">animal</p>
+    <p id="fish">fish</p>
+    
+    <script>
+        // JavaScript to change the text
+        const animalElement = document.getElementById("animal");
+        animalElement.textContent = "crow"; // Set the text to "crow"
+    </script>
+
+</body>
+</html>
+```
+
+### Which of the following correctly describes JSON?
+
+JSON, which stands for JavaScript Object Notation, is a lightweight data interchange format that is easy for humans to read and write and easy for machines to parse and generate. Here are the key characteristics and features of JSON:
+
+1. Data Format
+JSON is a text format that is completely language-independent but uses conventions that are familiar to programmers of the C family of languages (including C, C++, C#, Java, JavaScript, Perl, and Python).
+2. Structure
+Key-Value Pairs: JSON data is represented as key-value pairs, similar to objects in JavaScript.
+Objects: Enclosed in curly braces {}. An object contains a collection of key-value pairs.
+
+3. Data Types
+JSON supports the following data types:
+Strings: Must be enclosed in double quotes.
+Numbers: Can be integers or floating-point.
+Booleans: true or false.
+Null: Represents an empty value.
+Objects: As described above.
+Arrays: As described above.
+
+
+### What does the console command chmod, pwd, cd, ls, vim, nano, mkdir, mv, rm, man, ssh, ps, wget, sudo  do?
+
+1. chmod
+Description: Changes the file mode (permissions) of a file or directory.
+Usage: chmod [permissions] [file]
+Example: chmod 755 myfile.txt changes the permissions of myfile.txt to allow the owner to read, write, and execute, while allowing others to read and execute.
+2. pwd
+Description: Prints the current working directory (the directory you are currently in).
+Usage: pwd
+Example: Running pwd might output /home/user/documents, indicating your current location in the filesystem.
+3. cd
+Description: Changes the current directory to another directory.
+Usage: cd [directory]
+Example: cd /home/user changes the current directory to /home/user.
+4. ls
+Description: Lists the files and directories in the current directory.
+Usage: ls [options] [directory]
+Example: ls -l displays a detailed list of files and directories with permissions, owner, size, and modification date.
+5. vim
+Description: A powerful text editor that can be used to create and edit files.
+Usage: vim [file]
+Example: vim myfile.txt opens myfile.txt in the Vim editor.
+6. nano
+Description: A simple, user-friendly text editor for creating and editing files.
+Usage: nano [file]
+Example: nano myfile.txt opens myfile.txt in the Nano editor.
+7. mkdir
+Description: Creates a new directory.
+Usage: mkdir [directory]
+Example: mkdir new_folder creates a new directory called new_folder.
+8. mv
+Description: Moves or renames files or directories.
+Usage: mv [source] [destination]
+Example: mv oldname.txt newname.txt renames oldname.txt to newname.txt. To move a file: mv file.txt /path/to/destination/.
+9. rm
+Description: Removes (deletes) files or directories.
+Usage: rm [options] [file]
+Example: rm myfile.txt deletes myfile.txt. To remove a directory: rm -r myfolder.
+10. man
+Description: Displays the manual page for a command, providing detailed information about its usage.
+Usage: man [command]
+Example: man ls displays the manual for the ls command.
+11. ssh
+Description: Connects to a remote machine securely using the SSH (Secure Shell) protocol.
+Usage: ssh [user]@[host]
+Example: ssh user@192.168.1.1 connects to the machine at that IP address as the specified user.
+12. ps
+Description: Displays information about running processes.
+Usage: ps [options]
+Example: ps aux shows detailed information about all running processes.
+13. wget
+Description: Downloads files from the web using HTTP, HTTPS, or FTP.
+Usage: wget [options] [URL]
+Example: wget http://example.com/file.zip downloads the file from the specified URL.
+14. sudo
+Description: Executes a command with superuser (administrator) privileges.
+Usage: sudo [command]
+Example: sudo apt-get update runs the apt-get update command with superuser privileges, allowing the user to update package lists.
+
+
+### Which of the following console command creates a remote shell session?
+
+ssh [user]@[host]: This command allows you to securely connect to a remote machine. It establishes an encrypted connection over a network, allowing you to execute commands on the remote system as if you were using a local terminal.
+
+
+### Which of the following is true when the -la parameter is specified for the ls console command?
+
+1. List All Files and Directories
+The -a option includes all files and directories, including hidden ones (those that start with a dot .).
+2. Long Format Output
+The -l option displays the output in a long listing format, which provides detailed information about each file and directory.
+3. Information Included
+The long format output includes:
+File type and permissions
+Number of links
+Owner name
+Group name
+File size (in bytes)
+Last modification date and time
+File or directory name
+
+### Which of the following is true for the domain name banana.fruit.bozo.click, which is the top level domain, which is a subdomain, which is a root domain?
+
+1. Top Level Domain (TLD)
+click: This is the Top Level Domain (TLD). TLDs are the last segment of a domain name, following the final dot. In this case, click is a generic top-level domain (gTLD).
+2. Root Domain
+bozo.click: The root domain is often considered the domain name directly beneath the TLD. Here, bozo.click serves as the root domain.
+3. Subdomain
+fruit.bozo.click: This portion is considered a subdomain of the root domain. Specifically, fruit is a subdomain of bozo.click, and banana is a subdomain of fruit.bozo.click.
+Breakdown of the Components
+Root Domain: bozo.click
+Top Level Domain (TLD): click
+Subdomain:
+fruit (subdomain of bozo.click)
+banana (subdomain of fruit.bozo.click)
+
+#### Is a web certificate is necessary to use HTTPS.
+
+Yes, a web certificate (commonly referred to as an SSL/TLS certificate) is necessary to use HTTPS (Hypertext Transfer Protocol Secure). Here’s why:
+
+1. Encryption
+HTTPS encrypts the data exchanged between a user's browser and a web server, protecting sensitive information (like login credentials, payment details, etc.) from eavesdropping and tampering.
+2. Authentication
+The SSL/TLS certificate verifies the identity of the website, ensuring that users are communicating with the intended server and not a malicious entity. This helps prevent man-in-the-middle attacks.
+3. Data Integrity
+SSL/TLS certificates ensure that the data sent and received has not been altered or corrupted during transmission. This is critical for maintaining the integrity of the data.
+4. Browser Trust
+Modern web browsers display warnings when users visit sites without a valid SSL/TLS certificate. This can discourage users from engaging with or providing information to the site, as it raises concerns about security.
+Types of SSL/TLS Certificates
+Domain Validated (DV): Confirms ownership of the domain. This is the simplest and quickest type of certificate to obtain.
+Organization Validated (OV): Requires verification of the organization’s identity along with domain ownership.
+Extended Validation (EV): Provides the highest level of trust and requires extensive verification of the organization before issuance.
+
+### Can a DNS A record can point to an IP address or another A record.
+
+A DNS A record (Address Record) can point to an IP address, but it cannot point to another A record. Here’s a detailed explanation:
+
+1. Pointing to an IP Address
+An A record is primarily used to map a domain name to an IPv4 address. For example, if you have a domain name like example.com, the A record can point to an IP address such as 192.0.2.1.
+
+2. Cannot Point to Another A Record
+An A record cannot directly point to another A record. Each A record must resolve to an IP address. However, you can achieve similar functionality through other DNS records:
+CNAME Record: A CNAME (Canonical Name) record can point a domain name to another domain name (including those with A records). For example, if you want www.example.com to point to example.com, you would use a CNAME record.
+
+### Port 443, 80, 22 is reserved for which protocol?
+
+Port 80: Reserved for HTTP.
+Port 443: Reserved for HTTPS.
+Port 22: Reserved for SSH.
+
 ### What will the following code using Promises output when executed?
 
 The rendering process of your HTML executes on a single thread. That means that you cannot take a long time processing JavaScript on the main rendering thread. Long running, or blocking tasks, should be executed with the use of a JavaScript `Promise`. The execution of a promise allows the main rendering thread to continue while some action is executed in the background.

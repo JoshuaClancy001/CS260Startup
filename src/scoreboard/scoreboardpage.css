@@ -21,6 +21,12 @@ button {
     color: lightblue;
 }
 
+td{
+    border: 1px solid black;
+}
+th{
+    border: 1px solid black;
+}
 
 
 
@@ -41,6 +47,11 @@ h2{
     position: relative;
     top: -4%;
     text-decoration: underline;
+}
+
+.table-dark{
+    background-color: lightgreen !important;
+    opacity: 0.8 !important;
 }
 
 .main-container-scoreboard{

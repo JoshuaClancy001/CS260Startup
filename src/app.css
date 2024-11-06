@@ -4,6 +4,15 @@ html{
     height: 100%;
     overflow:hidden;
 }
+.form-control{
+    font-family: 'Oleo Script', cursive;
+}
+
+.right-col-h2{
+    position: relative;
+    top: -90px;
+}
+
 .streak-element{
     display: flex;
     position: absolute;
@@ -56,7 +65,12 @@ button {
 }
 
 
-
+.loginHeader{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
 
 header{
     background-color: #333;
@@ -71,6 +85,36 @@ h2{
     font-size: 3em;
 }
 
+#h2-scoreboard{
+    position: relative;
+    top: -4%;
+    text-decoration: underline;
+}
+.main-container{
+    flex: 1 calc(100vh - 110px);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: calc(100vh - 150px);
+}
+
+.main-container-login{
+    flex: 1 calc(100vh - 110px);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: calc(100vh - 150px);
+}
+
+.main-container-register{
+    flex: 1 calc(100vh - 110px);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: calc(100vh - 150px);
+}
 
 .main-container-logpage{
     flex: 1 calc(100vh - 110px);
@@ -80,6 +124,22 @@ h2{
     align-items: center;
     height: calc(100vh - 150px);
     font-family: 'Oleo Script', cursive;
+}
+.main-container-scoreboard{
+    flex: 1 calc(100vh - 110px);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: calc(100vh - 150px);
+}
+.main-container-friends{
+    flex: 1 calc(100vh - 110px);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: calc(100vh - 150px);
 }
 
 .timesheet{
@@ -140,27 +200,80 @@ menu li {
     color:white;
     font-size: 1.3em;
 }
+
+.login-form{
+    width: 50%;
+    margin: 0 auto;
+    background-color: lightblue;
+    padding: 20px;
+}
+
+
+.login-register-buttons{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    margin: 0 50px;
+    font-size: larger;
+    font-family: 'Oleo Script', cursive;
+}
+.left-column{
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin-right: 400px;
+}
+#guitar-picture{
+    width: 350px;
+    height: 350px;
+    margin: 0 50px;
+    position: relative;
+    top: -10px;
+    clip-path: polygon(0 0, 100% 0, 100% 80%, 80% 100%, 0 100%); /* Clip bottom right corner */
+    background-color: white;
+    
+}
+#piano-picture{
+    width: 400px;
+    margin: 0 50px;
+    position: relative;
+    top: 10px;
+}
+.right-column {
+    display: flex;
+    flex-direction: column;
+    align-items: center; 
+    margin-right: 300px;
+    font-family: 'Oleo Script', cursive;
+    
+}
+
 footer {
     background-color: #333;
     font-family: 'Oleo Script', cursive;
     color: lightblue;
     display: flex;
     align-items: center;
+    justify-content: space-between; /* Ensure elements are spaced out */
     width: 100%;
     padding: 0 20px;
-    height: 55px;
-    font-size: 2em;
-
+    height: 5vh; /* Adjusted height to 5vh */
+    font-size: 2em; /* Adjusted font size */
 }
 
 .index-footer {
-    height: 55px;
+    display: flex;
+    justify-content: space-between; /* Ensure elements are spaced out */
+    align-items: center;
+    width: 100%;
+    height: 100%; /* Ensure it takes the full height of the footer */
 }
 
 .author-name {
     flex-grow: 1;
     text-align: left;
-
 }
 
 @media (max-height: 650px ) {
@@ -178,14 +291,16 @@ footer {
 
   @media (max-width: 1000px) {
 
-    .streak-and-g-drive {
-        display: none;
+    .left-column {
+      display: none;
     }
-    .timesheet {
-        display: flex;
-        justify-content: center; /* Center horizontally */
-        align-items: center; /* Center vertically */
-        height: 100vh; /* Ensure it takes the full height of the viewport */
+    .right-column{
+        margin: 0;
+        padding: ;
+    }
+    .login-register-buttons{
+        position: relative;
+        top: 50px;
     }
   }
 

@@ -12,15 +12,15 @@ Have you ever wanted to learn an instrument, or improve at singing but you lack 
 ### Design 
 
 This is what it will look like when you first load up the page
-![Mock](WebsiteOutlinePictures/Homepage.jpg)
+![Mock](public/Homepage.jpg)
 This is what it will look like when you login/register a user
-![Mock](WebsiteOutlinePictures/LoginPage.jpg)
+![Mock](public/LoginPage.jpg)
 This is what it will look like when you register and are on Home tab
-![Mock](WebsiteOutlinePictures/LogPage.jpg)
+![Mock](public/LogPage.jpg)
 This is what it will look like when you are on the scoreboard tab
-![Mock](WebsiteOutlinePictures/ScoreboardPage.jpg)
+![Mock](public/ScoreboardPage.jpg)
 This is what it will look like when you are on the Friends tab
-![Mock](WebsiteOutlinePictures/FriendsListPage.jpg)
+![Mock](public/FriendsListPage.jpg)
 
 ### Key Features
 

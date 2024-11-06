@@ -4,16 +4,41 @@ html{
     height: 100%;
     overflow:hidden;
 }
+.streak-element{
+    display: flex;
+    position: absolute;
+    top: 25%;
+    left: 15%;
+    border: 2px solid #F991CC;
+    padding: 70px;
+    background-color: #F991CC;
+    border-radius: 65%;
+    font-size: 2em;
+}
+.google-drive-button{
+    display: flex;
+    position: absolute;
+    top: 55%;
+    left: 14.5%;
+    border: 2px solid lightgreen;
+    padding: 70px;
+    background-color: lightgreen; 
+    opacity: .8;
+    border-radius: 5%;
+    font-size: 2em;
+    align-items: baseline;
 
-.right-col-h2{
-    position: relative;
-    top: -90px;
 }
 
+#google-drive-button{
+    display: flex;
+    position: absolute;
+    width: 25%;
+    align-items: center;
+    top: 70%;
+    left: 37%;
 
-
-
-
+}
 
 button {
             width: 200px;
@@ -47,55 +72,78 @@ h2{
 }
 
 
-.main-container{
+.main-container-logpage{
     flex: 1 calc(100vh - 110px);
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
     height: calc(100vh - 150px);
-}
-
-.login-register-buttons{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-    margin: 0 50px;
-    font-size: larger;
     font-family: 'Oleo Script', cursive;
 }
-.left-column{
-    height: 100%;
+
+.timesheet{
+    display: flex;
+    flex-direction: column;
+    align-items: center; 
+    margin-left: 800px;
+    font-family: 'Oleo Script', cursive;
+    width: 80%;
+}
+#ID1{
+    background-color: lightblue !important;
+}
+
+.streak-and-g-drive{
+
     display: flex;
     flex-direction: column;
     justify-content: center;
     margin-right: 400px;
 }
-#guitar-picture{
-    width: 350px;
-    height: 350px;
-    margin: 0 50px;
-    position: relative;
-    top: -10px;
-    clip-path: polygon(0 0, 100% 0, 100% 80%, 80% 100%, 0 100%); /* Clip bottom right corner */
-    background-color: white;
-    
-}
-#piano-picture{
-    width: 400px;
-    margin: 0 50px;
-    position: relative;
-    top: 10px;
-}
-.right-column {
+
+.logpage-nav{
     display: flex;
+    position: absolute;
     flex-direction: column;
-    align-items: center; 
-    margin-right: 300px;
-    font-family: 'Oleo Script', cursive;
-    
+    top: 2%;
+    left: 0;
+    width: 100%;
+    padding: 10px;
+    font-family: 'Oleo Script' cursive;
+}
+.display-username{
+    display: flex;
+    position: absolute;
+    flex-direction: column;
+    top: 4%;
+    left: 92%;
+    width: 100%;
+    padding: 10px;
+    font-family: 'Oleo Script' cursive;
+    color: white;
+    font-size: 1.5em;
 }
 
+menu{
+    display: flex;
+    flex-direction: row;
+    list-style-type: none;
+}
+
+menu li {
+    margin-right: 20px; /* Add space between menu items */
+    font-family: 'Oleo Script', cursive;
+}
+
+.nav-item{
+    color: lightblue;
+    font-size: 1.3em;
+}
+.nav-item-active{
+    color:white;
+    font-size: 1.3em;
+}
 footer {
     background-color: #333;
     font-family: 'Oleo Script', cursive;
@@ -109,7 +157,9 @@ footer {
 
 }
 
-
+.index-footer {
+    height: 55px;
+}
 
 .author-name {
     flex-grow: 1;
@@ -132,21 +182,14 @@ footer {
 
   @media (max-width: 1000px) {
 
-    .left-column {
-      display: none;
-    }
-    .right-column{
-        margin: 0;
-    }
-    .login-register-buttons{
-        position: relative;
-        top: 50px;
-    }
-  }
-
-  @media (max-height: 580px ) {
-    .right-col-h2{
+    .streak-and-g-drive {
         display: none;
+    }
+    .timesheet {
+        display: flex;
+        justify-content: center; /* Center horizontally */
+        align-items: center; /* Center vertically */
+        height: 100vh; /* Ensure it takes the full height of the viewport */
     }
   }
 

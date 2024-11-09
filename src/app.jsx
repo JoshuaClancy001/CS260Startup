@@ -11,8 +11,13 @@ import { Friendslist } from './friendslist/friendslist'
 import { Home } from './home/home';
 import { GoogleDrive } from './googledrive/googledrive';
 import './app.css';
+import { AuthState } from './login/authState';
 
 export default function App() {
+
+    const [userName, setUserName] = React.useState(localStorage.getItem('userName') || '')
+    const currentAuthState = userName ? AuthState.Authenticated : AuthState.Unauthenticated;
+    const [authState, setAuthState] = React.useState(currentAuthState);
   return (
     <BrowserRouter>
         <div>
@@ -22,21 +27,27 @@ export default function App() {
             <div className="logpage-nav">
             <nav>
                 <menu>
+                    { authState == AuthState.Authenticated && (
                 <li>
                     <NavLink className='nav-item' to='logpage'>
                         Home 
                     </NavLink>
-                </li>
+                </li>)
+                    }
+                    {authState == AuthState.Authenticated && (
                 <li>
                 <NavLink className='nav-item' to='scoreboard'>
                         Scoreboard
                     </NavLink>
-                </li>
+                </li>)
+                    }
+                    { authState == AuthState.Authenticated && (
                 <li>
                     <NavLink className='nav-item' to='friendslist'>
                         FriendsList
                     </NavLink>
-                </li>
+                </li>)
+                    }
                 <li>
                     <NavLink className='nav-item' to=''>
                         Logout
@@ -49,8 +60,22 @@ export default function App() {
 
         <Routes>
             <Route path='/logpage' element={<Logpage />} />
-            <Route path='/login' element={<Login />} />
-            <Route path='/register' element={<Register />} />
+            <Route path='/login' element={<Login 
+                userName = {userName}
+                authState = {authState}
+                onAuthChange={(userName, authState) => {
+                    setAuthState(authState);
+                    setUserName(userName);
+                }}
+            />} />
+            <Route path='/register' element={<Register
+                userName = {userName}
+                authState = {authState}
+                onAuthChange={(userName, authState) => {
+                    setAuthState(authState);
+                    setUserName(userName);
+            }} 
+            />} />
             <Route path='/scoreboard' element={<Scoreboard />} />
             <Route path='/friendslist' element={<Friendslist />} />
             <Route path='/googledrive' element={<GoogleDrive />} />

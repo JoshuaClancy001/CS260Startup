@@ -1,13 +1,16 @@
 import React from 'react';
+import Form from 'react-bootstrap/Form';
 import { useNavigate } from 'react-router-dom';
 import './register.css'
 
-export function Register() {
+export function Register(props) {
 
+  const [userName, setUserName] = React.useState(props.userName);
   const navigate = useNavigate();
 
   const handleEnter = (event) => {
     event.preventDefault();
+    registerUser()
     navigate('/logpage');
   };
 
@@ -15,16 +18,20 @@ export function Register() {
     event.preventDefault();
     navigate('/');
   };
+  async function registerUser() {
+    localStorage.setItem('userName',userName)
+    props.onRegister(userName)
+  }
 
   return (
     <main className="main-container-register">
   <h2>Create an Account</h2>
-  <form onSubmit={handleEnter} className="login-form">
+  <Form onSubmit={handleEnter} className="login-form">
     <div className="mb-3">
       <label htmlFor="exampleInputUsername1" className="form-label" 
       style={{ fontFamily: 'Oleo Script, cursive' }}>Username
       </label>
-      <input type="text" className="form-control" id="exampleInputUsername1" aria-describedby="usernameHelp" />
+      <input type="text" className="form-control" id="exampleInputUsername1" aria-describedby="usernameHelp" onChange={(e)=>setUserName(e.target.value)}/>
     </div>
     <div className="mb-3">
       <label htmlFor="exampleInputPassword1" className="form-label" 
@@ -41,7 +48,7 @@ export function Register() {
       <input type="email" className="form-control" id="exampleInputEmail1" />
     </div>
     <button type="submit" className="btn btn-primary" style={{ color: 'lightblue', backgroundColor: 'white', borderColor: 'white', fontFamily: 'Oleo Script, cursive' }}>Submit</button>
-  </form>
+  </Form>
   <br />
   <form onSubmit={handleExit}>
     <button type="submit" className="btn btn-success" 

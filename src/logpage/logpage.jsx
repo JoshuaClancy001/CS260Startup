@@ -6,6 +6,8 @@ export function Logpage() {
 
   const navigate = useNavigate();
 
+  const [userName, setUserName] = React.useState(localStorage.getItem('userName'))
+
   const handleGoogleDriveConnect = (event) => {
     event.preventDefault();
     navigate('/googledrive');
@@ -20,7 +22,7 @@ export function Logpage() {
 
   return (
     <main className="main-container-logpage">
-  <h3 className="display-username">JJC123</h3>
+  <h3 className="display-username">{userName}</h3>
 
   <div className="streak-and-g-drive">
     <h3 className="streak-element">Streak → 3</h3>

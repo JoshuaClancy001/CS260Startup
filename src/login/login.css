@@ -52,11 +52,13 @@ h2{
     color: white;
     font-size: 1.5em;
 }
-.login-form{
-    width: 50%;
-    margin: 0 auto;
-    background-color: lightblue;
+.login-form {
+    width: 100%; /* Ensure the form takes the full width */
+    max-width: 600px; /* Optional: Set a max-width for better readability */
     padding: 20px;
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
 footer {

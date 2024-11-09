@@ -51,6 +51,7 @@ h2{
 
 .table-dark{
     background-color: lightgreen !important;
+    color: red !important;
     opacity: 0.8 !important;
 }
 

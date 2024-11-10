@@ -22,7 +22,7 @@ export function Home() {
 //     navigate('/register');
 //   };
   return (
-    <main className="main-container">
+    <main className="main-container-home">
       <div className="left-column">
         <div className="image-container">
           <img

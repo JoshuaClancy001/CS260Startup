@@ -93,3 +93,14 @@ For this deliverable I built out the structure of my application using HTML
    - images disappear when the window resizes
    - cut out bottom right corner of guitar picture to make it look better
 
+## React Deliverable 
+- **Bundled with Vite** - deployed and bundled using Vite
+- **Components** 
+   - login/register - both do the same thing, when a user logs in, they are added to local storage so their name,streak,and times can be accessed through the local storage
+   - logpage - component contains the Streak, Googledrive buttons as well as the timesheet. The streak updates with consecutive inserted practiced times. Only the current days time is editable and all reset to 0 at the end of the week but the streak persits in the local storage. 
+   - scoreboard - Displays all of the users, their streaks, and the order which they compare to others on the leaderboard
+   - userList - Similar to scoreboard component but adds a message button and hides the current person from the list so they cant try and send a message to themselves. The message button that is clicked on saves the person the user is trying to message for further implementation of websockets
+   - messagepage - Has a message box and displays the person the user is messaging by retrieving the receiver from localStorage. 
+   - googledrivepage - Just a placeholder for the google drive service to be implemented later
+- **Router** - Routing between different compenents throughout the application
+- **Hooks** - Uses hooks such as useState and useEffect to implement functionality of the application

@@ -8,7 +8,7 @@ export function Logpage() {
   const [practiceTimes, setPracticeTimes] = useState(Array(7).fill("0"));
   const [userStreak, setUserStreak] = useState(0);  // Default streak to 0 initially
   const [prevSat, setPrevSat] = useState(Boolean(localStorage.getItem("prevSat")) || false);
-
+  const currentDayIndex = new Date().getDay();
   // UseEffect to load or create streak when component mounts
   useEffect(() => {
     // Retrieve the streaks array from localStorage
@@ -126,7 +126,7 @@ export function Logpage() {
               <tr key={day}>
                 <td style={{ border: '1px solid black' }}>{day}</td>
                 <td style={{ border: '1px solid black' }}>
-                  <select value={practiceTimes[index]} onChange={(e) => handleTimeChange(index, e.target.value)}>
+                  <select value={practiceTimes[index]} onChange={(e) => handleTimeChange(index, e.target.value)} disabled={currentDayIndex != index}>
                     <option value="0">{practiceTimes[index] === "0" ? "0 minutes" : `${practiceTimes[index]} minutes`}</option>
                     <option value="15">15 minutes</option>
                     <option value="30">30 minutes</option>

@@ -40,7 +40,6 @@ export function Login(props) {
             className="form-control"
             id="exampleInputUsername1"
             aria-describedby="usernameHelp"
-            value={userName}
             onChange={(e) => setUserName(e.target.value)}
           />
         </div>

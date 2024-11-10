@@ -106,6 +106,14 @@ h2{
     align-items: center;
     height: calc(100vh - 150px);
 }
+.main-container-message{
+    flex: 1 calc(100vh - 110px);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: calc(100vh - 150px);
+}
 
 .main-container-register{
     flex: 1 calc(100vh - 110px);

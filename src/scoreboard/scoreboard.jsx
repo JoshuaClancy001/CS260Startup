@@ -7,6 +7,7 @@ import './scoreboardpage.css';
 export function Scoreboard() {
 
   const [streaks, setStreaks] = React.useState([]);
+  const userName = localStorage.getItem('userName');
 
   React.useEffect(() => {
     const streaksText = localStorage.getItem('streaks');
@@ -24,7 +25,7 @@ export function Scoreboard() {
       
       scoreRows.push(
         <tr key={i}>
-          <td>{i}</td>
+          <td>{i+1}</td>
           <td>{score.name.split('@')[0]}</td>
           <td>{score.streak}</td>
         </tr>
@@ -46,7 +47,7 @@ export function Scoreboard() {
   };
   return (
     <main className="main-container-scoreboard">
-      <h3 className="display-username" style={{ fontFamily: 'Oleo Script, cursive' }}>JJC123</h3>
+      <h3 className="display-username" style={{ fontFamily: 'Oleo Script, cursive' }}>{userName}</h3>
       <h2 id="h2-scoreboard">Scoreboard</h2>
       
       <Table 
@@ -72,20 +73,7 @@ export function Scoreboard() {
         </tbody>
       </Table>
 
-      <form onSubmit={handleExit}>
-        <button 
-          type="submit" 
-          className="btn btn-success" 
-          style={{ 
-            backgroundColor: 'lightgreen', 
-            borderColor: 'lightgreen', 
-            opacity: 0.8, 
-            fontFamily: 'Oleo Script, cursive' 
-          }}
-        >
-          Exit
-        </button>
-      </form>
+      
     </main>
   );
 }

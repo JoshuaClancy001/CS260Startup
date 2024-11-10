@@ -6,6 +6,9 @@ export function Friendslist() {
 
   const navigate = useNavigate();
 
+  const userName = localStorage.getItem('userName');
+
+
   const handleMessage = (event, name) => {
     event.preventDefault();
     localStorage.setItem('receiver', name);
@@ -67,6 +70,8 @@ export function Friendslist() {
 
   return (
     <main className="main-container-friends">
+            <h3 className="display-username" style={{ fontFamily: 'Oleo Script, cursive' }}>{userName}</h3>
+
       <h2 id="h2-scoreboard">UsersList</h2>
       
       <table 
@@ -92,21 +97,6 @@ export function Friendslist() {
           {scoreRows}
         </tbody>
       </table>
-
-      <form method="get" action="index.html">
-        <button 
-          type="submit" 
-          className="btn btn-success" 
-          style={{ 
-            backgroundColor: 'lightgreen', 
-            borderColor: 'lightgreen', 
-            opacity: 0.8, 
-            fontFamily: 'Oleo Script, cursive' 
-          }}
-        >
-          Exit
-        </button>
-      </form>
     </main>
   );
 }

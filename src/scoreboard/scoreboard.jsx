@@ -21,6 +21,7 @@ export function Scoreboard() {
   const scoreRows = [];
   if (streaks.length) {
     for (const [i, score] of sortedStreaks.entries()) {
+      
       scoreRows.push(
         <tr key={i}>
           <td>{i}</td>

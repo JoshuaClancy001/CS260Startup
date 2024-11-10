@@ -5,6 +5,8 @@ html{
     overflow:hidden;
 }
 
+
+
 button {
     width: 200px;
     height: 50px;
@@ -25,44 +27,9 @@ header{
     color: lightblue;
 }
 
-.main-container {
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    padding: 20px;
-}
 
-.main-container span {
-    font-size: 1.5em;
-    margin-bottom: 10px;
-}
 
-.main-container input[type="text"] {
-    font-size: 1.2em;
-    padding: 10px;
-    margin-bottom: 10px;
-    width: 100%;
-    max-width: 400px;
-    border: 2px solid #333;
-    border-radius: 5px;
-}
 
-.main-container button {
-    font-size: 1.2em;
-    padding: 10px 20px;
-    margin: 10px;
-    background-color: lightblue;
-    border: none;
-    border-radius: 5px;
-    color: #333;
-    cursor: pointer;
-}
-
-.main-container button:hover {
-    background-color: white;
-}
 
 .author-name {
     flex-grow: 1;

@@ -6,13 +6,15 @@ export function Friendslist() {
 
   const navigate = useNavigate();
 
-  const handleMessage = (event) => {
+  const handleMessage = (event, name) => {
     event.preventDefault();
+    localStorage.setItem('receiver', name);
     navigate('/messagepage');
   }
 
 
   const [streaks, setStreaks] = React.useState([]);
+  const [receiver, setReceiver] = React.useState('');
 
   React.useEffect(() => {
     const streaksText = localStorage.getItem('streaks');
@@ -27,13 +29,14 @@ export function Friendslist() {
   const scoreRows = [];
   if (streaks.length) {
     for (const [i, score] of sortedStreaks.entries()) {
+      if (score.name !== localStorage.getItem('userName')) {
       scoreRows.push(
         <tr key={i}>
           <td>{i+1}</td>
           <td>{score.name.split('@')[0]}</td>
           <td>{score.streak}</td>
           <td>
-          <form onSubmit={handleMessage}>
+          <form onSubmit={(event) => handleMessage(event, score.name)}>
                 <button 
                   type="submit" 
                   className="btn btn-primary" 
@@ -51,6 +54,7 @@ export function Friendslist() {
           </td>
         </tr>
       );
+    }
     }
   } else {
     scoreRows.push(

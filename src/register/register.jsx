@@ -1,6 +1,7 @@
 import React from 'react';
 import Form from 'react-bootstrap/Form';
 import { useNavigate } from 'react-router-dom';
+import { AuthState } from '../login/authState';
 import './register.css'
 
 export function Register(props) {
@@ -20,7 +21,7 @@ export function Register(props) {
   };
   async function registerUser() {
     localStorage.setItem('userName',userName)
-    props.onRegister(userName)
+    props.onAuthChange(userName, AuthState.Authenticated);
   }
 
   return (

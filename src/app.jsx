@@ -18,6 +18,14 @@ export default function App() {
     const [userName, setUserName] = React.useState(localStorage.getItem('userName') || '')
     const currentAuthState = userName ? AuthState.Authenticated : AuthState.Unauthenticated;
     const [authState, setAuthState] = React.useState(currentAuthState);
+
+    const onLogout = () => {
+        setUserName(''); // Clear userName
+        setAuthState(AuthState.Unauthenticated); // Set auth state to unauthenticated
+        localStorage.removeItem('userName'); // Optionally remove userName from localStorage
+    }
+
+
   return (
     <BrowserRouter>
         <div>
@@ -44,22 +52,24 @@ export default function App() {
                     { authState == AuthState.Authenticated && (
                 <li>
                     <NavLink className='nav-item' to='friendslist'>
-                        FriendsList
+                        UsersList
                     </NavLink>
                 </li>)
                     }
+                    { authState == AuthState.Authenticated && (
                 <li>
-                    <NavLink className='nav-item' to=''>
+                    <NavLink className='nav-item' to='' onClick={onLogout}>
                         Logout
                     </NavLink>
-                </li>
+               </li>)
+                }
                 </menu>
             </nav>
             </div>
         </header>
 
         <Routes>
-            <Route path='/logpage' element={<Logpage />} />
+            <Route path='/logpage' element={<Logpage onLogut={(loginUserName) => {onAuthChange(loginUserName,AuthState.Unauthenticated)}}/>} />
             <Route path='/login' element={<Login 
                 userName = {userName}
                 authState = {authState}
@@ -67,6 +77,7 @@ export default function App() {
                     setAuthState(authState);
                     setUserName(userName);
                 }}
+                onLogin={(loginUserName) => {onAuthChange(loginUserName,AuthState.Authenticated)}}
             />} />
             <Route path='/register' element={<Register
                 userName = {userName}
@@ -75,10 +86,12 @@ export default function App() {
                     setAuthState(authState);
                     setUserName(userName);
             }} 
+                onLogin={(loginUserName) => {onAuthChange(loginUserName,AuthState.Authenticated)}}
             />} />
             <Route path='/scoreboard' element={<Scoreboard />} />
             <Route path='/friendslist' element={<Friendslist />} />
             <Route path='/googledrive' element={<GoogleDrive />} />
+            <Route path='/messagepage' element={<Messagepage />} />
             <Route path='/' element={<Home/>} exact />
             <Route path='*' element={<NotFound />} />
 

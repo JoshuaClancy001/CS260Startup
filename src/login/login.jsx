@@ -8,6 +8,7 @@ import './login.css';
 
 export function Login(props) {
   const [userName, setUserName] = React.useState(props.userName);
+  
   const navigate = useNavigate();
 
   const handleEnter = (event) => {
@@ -23,7 +24,7 @@ export function Login(props) {
 
   async function loginUser() {
       localStorage.setItem('userName', userName);
-      props.onLogin(userName);
+      props.onAuthChange(userName, AuthState.Authenticated);
   }
 
   return (
@@ -67,7 +68,6 @@ export function Login(props) {
           Submit
         </button>
       </Form>
-      {displayError && <div className="alert alert-danger mt-3">{displayError}</div>}
       <br />
       <form onSubmit={handleExit}>
         <button

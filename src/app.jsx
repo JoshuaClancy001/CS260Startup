@@ -16,14 +16,33 @@ import { AuthState } from './login/authState';
 export default function App() {
 
     const [userName, setUserName] = React.useState(localStorage.getItem('userName') || '')
+    const [password, setPassword] = React.useState('');
+    const [token, setToken] = React.useState(localStorage.getItem('token') || '');
     const currentAuthState = userName ? AuthState.Authenticated : AuthState.Unauthenticated;
     const [authState, setAuthState] = React.useState(currentAuthState);
 
-    const onLogout = () => {
-        setUserName(''); // Clear userName
-        setAuthState(AuthState.Unauthenticated); // Set auth state to unauthenticated
-        localStorage.removeItem('userName'); // Optionally remove userName from localStorage
-    }
+
+    async function onLogout() {
+        const token1 = localStorage.getItem('token');
+        const response = await fetch(`/api/auth/logout`, {
+          method: 'delete',
+          body: JSON.stringify({ name: userName, password: password, token: token1 }),
+          headers: {
+            'Content-type': 'application/json; charset=UTF-8',
+          },
+        });
+        if (response?.status === 204){
+          setAuthState(AuthState.Unauthenticated);
+          setUserName('');
+          localStorage.removeItem('userName');
+          localStorage.removeItem('token');
+          navigate('/');
+        }
+        else{
+          const body = await response.json();
+          setDisplayError(`⚠ Error: ${body.msg}`);
+        }
+      }
 
 
   return (
@@ -72,6 +91,7 @@ export default function App() {
             <Route path='/logpage' element={<Logpage onLogut={(loginUserName) => {onAuthChange(loginUserName,AuthState.Unauthenticated)}}/>} />
             <Route path='/login' element={<Login 
                 userName = {userName}
+                password = {password}
                 authState = {authState}
                 onAuthChange={(userName, authState) => {
                     setAuthState(authState);
@@ -81,12 +101,12 @@ export default function App() {
             />} />
             <Route path='/register' element={<Register
                 userName = {userName}
+                password = {password}
                 authState = {authState}
                 onAuthChange={(userName, authState) => {
                     setAuthState(authState);
                     setUserName(userName);
             }} 
-                onLogin={(loginUserName) => {onAuthChange(loginUserName,AuthState.Authenticated)}}
             />} />
             <Route path='/scoreboard' element={<Scoreboard />} />
             <Route path='/friendslist' element={<Friendslist />} />

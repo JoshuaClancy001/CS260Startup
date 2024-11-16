@@ -8,13 +8,13 @@ import './login.css';
 
 export function Login(props) {
   const [userName, setUserName] = React.useState(props.userName);
+  const [password, setPassword] = React.useState(props.password);
   
   const navigate = useNavigate();
 
   const handleEnter = (event) => {
     event.preventDefault();
-    loginUser();
-    navigate('/logpage');
+    loginOrCreate(`/api/auth/login`);
   };
 
   const handleExit = (event) => {
@@ -22,9 +22,25 @@ export function Login(props) {
     navigate('/');
   };
 
-  async function loginUser() {
+  async function loginOrCreate(endpoint) {
+    const response = await fetch(endpoint, {
+      method: 'post',
+      body: JSON.stringify({ name: userName, password: password }),
+      headers: {
+        'Content-type': 'application/json; charset=UTF-8',
+      },
+    });
+    if (response?.status === 200){
+      const body = await response.json();
       localStorage.setItem('userName', userName);
+      localStorage.setItem('token', body.token);
       props.onAuthChange(userName, AuthState.Authenticated);
+      navigate('/logpage');
+    }
+    else{
+      const body = await response.json();
+      alert(`⚠ Error: ${body.msg}`);
+    }
   }
 
   return (
@@ -44,13 +60,15 @@ export function Login(props) {
           />
         </div>
         <div className="mb-3">
-          <label htmlFor="exampleInputPassword1" className="form-label" style={{ fontFamily: 'Oleo Script, cursive' }}>
+          <label htmlFor="exampleInputPassword1" className="form-label" style={{ fontFamily: 'Oleo Script, cursive' }}
+          >
             Password
           </label>
           <input
             type="password"
             className="form-control"
             id="exampleInputPassword1"
+            onChange={(e) => setPassword(e.target.value)}
             style={{ fontFamily: 'Oleo Script, cursive' }}
           />
         </div>

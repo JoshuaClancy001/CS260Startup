@@ -7,21 +7,41 @@ import './register.css'
 export function Register(props) {
 
   const [userName, setUserName] = React.useState(props.userName);
+  const [password, setPassword] = React.useState(props.password);
+  const [token, setToken] = React.useState(localStorage.getItem('token') || '');
   const navigate = useNavigate();
 
   const handleEnter = (event) => {
     event.preventDefault();
-    registerUser()
-    navigate('/logpage');
+    loginOrCreate(`/api/auth/create`);
   };
 
   const handleExit = (event) => {
     event.preventDefault();
     navigate('/');
   };
-  async function registerUser() {
-    localStorage.setItem('userName',userName)
-    props.onAuthChange(userName, AuthState.Authenticated);
+
+  async function loginOrCreate(endpoint) {
+    const response = await fetch(endpoint, {
+      method: 'post',
+      body: JSON.stringify({ name: userName, password: password }),
+      headers: {
+        'Content-type': 'application/json; charset=UTF-8',
+      },
+    });
+    if (response?.status === 200){
+      const body = await response.json();
+      localStorage.setItem('userName', userName);
+      localStorage.setItem('token', body.token);
+      setToken(body.token);
+      props.onAuthChange(userName, AuthState.Authenticated);
+      navigate('/logpage');
+      response.token
+    }
+    else{
+      const body = await response.json();
+      setDisplayError(`⚠ Error: ${body.msg}`);
+    }
   }
 
   return (
@@ -39,7 +59,7 @@ export function Register(props) {
       style={{ fontFamily: 'Oleo Script, cursive' }}>
         Password
       </label>
-      <input type="password" className="form-control" id="exampleInputPassword1" />
+      <input type="password" className="form-control" id="exampleInputPassword1" onChange={(e) => setPassword(e.target.value)}/>
     </div>
     <div className="mb-3">
       <label htmlFor="exampleInputEmail1" className="form-label" 

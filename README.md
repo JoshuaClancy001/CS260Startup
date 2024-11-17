@@ -104,3 +104,18 @@ For this deliverable I built out the structure of my application using HTML
    - googledrivepage - Just a placeholder for the google drive service to be implemented later
 - **Router** - Routing between different compenents throughout the application
 - **Hooks** - Uses hooks such as useState and useEffect to implement functionality of the application
+
+## Service Deliverable
+
+- **Create an HTTP service using Node.js and Express**
+   - Added an index.js file to act as the backend server that saves the variables in memory to prepare to implement a database
+- **Frontend served up using Express static middleware**
+   - Service uses express middleware to be called by front end
+- **Frontend calls third party service endpoints**
+   - frontend uses fetch to call third party quote service.
+   - I was trying to get it to do google drive stuff but wasnt able to figure it out in time.
+   - Changed the google drive connect button into a new quote button that gives a different quote each time you click it. and displays on the home logpage
+- **Your backend provides service endpoints**
+   - Backend provides endpoints for login,create,logout,getStreaks,updateStreaks
+- **Frontend calls your service endpoints**
+   - frontend uses fetch to call service endpoints for login,create,logout,getStreaks,updateStreaks

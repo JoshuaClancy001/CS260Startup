@@ -137,7 +137,7 @@ export function Logpage() {
         </form>
         <div className='quote'>
             {quote}
-            <p> - {quoteAuthor}</p>
+            <p> -{quoteAuthor}</p>
           </div>
       </div>
 

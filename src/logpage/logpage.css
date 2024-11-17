@@ -30,6 +30,18 @@ html{
 
 }
 
+.quote{
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    top: 81%;
+    left: 5%;
+    font-size: 1.5em;
+    font-family: 'Oleo Script', cursive;
+    color: black;
+
+}
+
 #google-drive-button{
     display: flex;
     position: absolute;

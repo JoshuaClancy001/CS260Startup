@@ -9,12 +9,25 @@ export function Logpage() {
   const [userStreak, setUserStreak] = useState(0);
   const [allStreaks, setAllStreaks] = React.useState([])  // Default streak to 0 initially
   const [prevSat, setPrevSat] = useState(Boolean(localStorage.getItem("prevSat")) || false);
+  const [quote, setQuote] = useState('this is a quote depending on who you ask just to test how long it can be and still fit on the screen');
+  const [quoteAuthor, setQuoteAuthor] = useState('Author');
   const currentDayIndex = new Date().getDay();
   // UseEffect to load or create streak when component mounts
   
+  async function getQuote() {
+    fetch('https://quotes-api-self.vercel.app/quote')
+      .then((response) => response.json())
+      .then((data) => {
+        setQuote(data.quote);
+        setQuoteAuthor(data.author);
+      })
+      .catch();
+  }
+  
+  
   async function getStreaks() {
-    const response = await fetch('/api/streak', {
-      method: 'POST',
+    const response = await fetch('/api/streaks', {
+      method: 'GET',
       headers: { 'content-type': 'application/json' },
     });
     if (response?.status === 200) {
@@ -30,10 +43,11 @@ export function Logpage() {
   
   useEffect(() => {
 
+
     async function fetchStreaks() {
       getStreaks();
     }
-
+    getQuote();
     fetchStreaks();
   },[]);
 
@@ -49,7 +63,7 @@ export function Logpage() {
     let streak = userStreak;
 
     if (value !== "0") {
-      // Logic for updating streak
+      
       if (dayNumber > 0 && newTimes[dayNumber - 1] !== "0") {
         if (oldValue === "0") {
           streak += 1;
@@ -98,9 +112,9 @@ export function Logpage() {
     // localStorage.setItem('streaks', JSON.stringify(streaks));
   }
 
-  const handleGoogleDriveConnect = (event) => {
+  async function handleGoogleDriveConnect(){
     event.preventDefault();
-    navigate('/googledrive');
+    getQuote();
   };
 
   const handleExit = (event) => {
@@ -115,11 +129,16 @@ export function Logpage() {
       <div className="streak-and-g-drive">
         <h3 className="streak-element">Streak → {userStreak}</h3>
         <form className="google-drive-button" onSubmit={handleGoogleDriveConnect}>
-          Google Drive
+          New Quote
           <button id="google-drive-button" type="submit" className="btn btn-primary" style={{ backgroundColor: 'lightblue', borderColor: 'lightblue' }}>
-            Connect
+            Submit
           </button>
+          
         </form>
+        <div className='quote'>
+            {quote}
+            <p> - {quoteAuthor}</p>
+          </div>
       </div>
 
       <div className="timesheet">

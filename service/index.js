@@ -25,7 +25,7 @@ apiRouter.post('/auth/create', async (req, res) => {
     users[user.name] = user;
     res.send({ token: user.token });
   }
-});
+5});
 
 apiRouter.post('/auth/login', async (req, res) => {
   const user = users[req.body.name];
@@ -73,6 +73,7 @@ function updateStreaks(newStreak, streaks){
       practiceTimes: Array(7).fill("0"), 
     };
     streaks.push(currentUserStreak);
+    return streaks;
   }
   currentUserStreak.streak = newStreak.streak;
   currentUserStreak.practiceTimes = newStreak.practiceTimes;

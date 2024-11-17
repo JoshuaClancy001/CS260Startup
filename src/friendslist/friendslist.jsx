@@ -4,6 +4,9 @@ import { useNavigate } from 'react-router-dom';
 
 export function Friendslist() {
 
+  const [streaks, setStreaks] = React.useState([]);
+  const [receiver, setReceiver] = React.useState('');
+
   const navigate = useNavigate();
 
   const userName = localStorage.getItem('userName');
@@ -15,22 +18,30 @@ export function Friendslist() {
     navigate('/messagepage');
   }
 
-
-  const [streaks, setStreaks] = React.useState([]);
-  const [receiver, setReceiver] = React.useState('');
-
   React.useEffect(() => {
-    const streaksText = localStorage.getItem('streaks');
-    if (streaksText) {
-      setStreaks(JSON.parse(streaksText));
+    
+    async function fetchStreaks() {
+      const response = await fetch('/api/streaks', {
+        method: 'GET',
+        headers: { 'content-type': 'application/json' },
+      });
+      if (response?.status === 200) {
+        const updatedStreaks = await response.json();
+        setStreaks(updatedStreaks);
+      }
     }
+
+    fetchStreaks();
   }, []);
 
   const sortedStreaks = [...streaks].sort((a, b) => b.streak - a.streak);
 
+  const otherUsers = sortedStreaks.filter((user) => user.name !== userName);
+
+
 
   const scoreRows = [];
-  if (streaks.length) {
+  if (otherUsers.length) {
     for (const [i, score] of sortedStreaks.entries()) {
       if (score.name !== localStorage.getItem('userName')) {
       scoreRows.push(
@@ -62,7 +73,7 @@ export function Friendslist() {
   } else {
     scoreRows.push(
       <tr key='0'>
-        <td colSpan='4'>Be the first to score</td>
+        <td colSpan='4'>Wait for others to Join</td>
       </tr>
     );
   }

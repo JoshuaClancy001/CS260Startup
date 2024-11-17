@@ -6,33 +6,36 @@ export function Logpage() {
   const navigate = useNavigate();
   const [userName, setUserName] = useState(localStorage.getItem('userName'));
   const [practiceTimes, setPracticeTimes] = useState(Array(7).fill("0"));
-  const [userStreak, setUserStreak] = useState(0);  // Default streak to 0 initially
+  const [userStreak, setUserStreak] = useState(0);
+  const [allStreaks, setAllStreaks] = React.useState([])  // Default streak to 0 initially
   const [prevSat, setPrevSat] = useState(Boolean(localStorage.getItem("prevSat")) || false);
   const currentDayIndex = new Date().getDay();
   // UseEffect to load or create streak when component mounts
+  
+  async function getStreaks() {
+    const response = await fetch('/api/streak', {
+      method: 'POST',
+      headers: { 'content-type': 'application/json' },
+    });
+    if (response?.status === 200) {
+      const updatedStreaks = await response.json();
+      setAllStreaks(updatedStreaks);
+      let currentUserStreak = updatedStreaks.find(streak => streak.name === userName);
+      setUserStreak(currentUserStreak.streak);
+      setPracticeTimes(currentUserStreak.practiceTimes);
+      }
+  }
+
+  
+  
   useEffect(() => {
-    // Retrieve the streaks array from localStorage
-    const streaksText = localStorage.getItem('streaks');
-    let streaks = streaksText ? JSON.parse(streaksText) : [];
 
-    // Try to find the current user's streak from the list
-    let currentUserStreak = streaks.find(streak => streak.name === userName);
-
-    // If no streak found, create a new streak object for the user
-    if (!currentUserStreak) {
-      currentUserStreak = {
-        name: userName,
-        streak: 0,
-        practiceTimes: Array(7).fill("0"), // Array of 0's for practice time
-      };
-      streaks.push(currentUserStreak); // Add the new streak object to the list
-      localStorage.setItem('streaks', JSON.stringify(streaks)); // Save the updated streaks list to localStorage
+    async function fetchStreaks() {
+      getStreaks();
     }
 
-    // Set the userStreak and practiceTimes state
-    setUserStreak(currentUserStreak.streak);
-    setPracticeTimes(currentUserStreak.practiceTimes);
-  }, [userName]);
+    fetchStreaks();
+  },[]);
 
   // Function to handle practice time changes
   const handleTimeChange = (dayNumber, value) => {
@@ -40,7 +43,7 @@ export function Logpage() {
     const oldValue = newTimes[dayNumber];
     newTimes[dayNumber] = value;
     setPracticeTimes(newTimes);
-    localStorage.setItem("times", JSON.stringify(newTimes));
+    // localStorage.setItem("times", JSON.stringify(newTimes));
 
     // Update streak based on new practice times
     let streak = userStreak;
@@ -66,20 +69,34 @@ export function Logpage() {
   };
 
   // Function to save streak and update the localStorage streaks list
-  const saveStreak = (streak, practiceTimes) => {
+  
+  
+  
+  
+  
+  async function saveStreak(streak, practiceTimes) {
     const streaksText = localStorage.getItem('streaks');
     let streaks = streaksText ? JSON.parse(streaksText) : [];
 
-    // Find and update the current user's streak in the list
-    const userIndex = streaks.findIndex(s => s.name === userName);
-    if (userIndex !== -1) {
-      streaks[userIndex].streak = streak;
-      streaks[userIndex].practiceTimes = practiceTimes; // Update practiceTimes as well
+    const response = await fetch('/api/streak', {
+      method: 'POST',
+      headers: { 'content-type': 'application/json' },
+      body: JSON.stringify({ name: userName, streak: streak, practiceTimes: practiceTimes }),
+    });
+    if (response?.status === 200) {
+      const updatedStreaks = await response.json();
+      for (let i = 0; i < updatedStreaks.length; i++) {
+        if (updatedStreaks[i].name === userName) {
+          setUserStreak(updatedStreaks[i].streak);
+          setPracticeTimes(updatedStreaks[i].practiceTimes);
+        }
+      }
     }
+  
 
     // Save the updated streaks list to localStorage
-    localStorage.setItem('streaks', JSON.stringify(streaks));
-  };
+    // localStorage.setItem('streaks', JSON.stringify(streaks));
+  }
 
   const handleGoogleDriveConnect = (event) => {
     event.preventDefault();
@@ -126,7 +143,7 @@ export function Logpage() {
               <tr key={day}>
                 <td style={{ border: '1px solid black' }}>{day}</td>
                 <td style={{ border: '1px solid black' }}>
-                  <select value={practiceTimes[index]} onChange={(e) => handleTimeChange(index, e.target.value)} disabled={currentDayIndex != index}>
+                  <select value={practiceTimes[index]} onChange={(e) => handleTimeChange(index, e.target.value)} >
                     <option value="0">{practiceTimes[index] === "0" ? "0 minutes" : `${practiceTimes[index]} minutes`}</option>
                     <option value="15">15 minutes</option>
                     <option value="30">30 minutes</option>

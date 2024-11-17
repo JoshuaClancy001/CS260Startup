@@ -47,13 +47,13 @@ apiRouter.delete('/auth/logout', (req, res) => {
   res.status(204).send();
 });
 
-apiRouter.get('/scores', (_req, res) => {
+apiRouter.get('/streaks', (_req, res) => {
   res.send(streaks);
 });
 
-apiRouter.post('/score', (req, res) => {
+apiRouter.post('/streak', (req, res) => {
   streaks = updateStreaks(req.body, streaks);
-  res.send(streaks);
+  res.status(200).send(streaks);
 });
 
 app.use((_req, res) => {
@@ -65,19 +65,16 @@ app.listen(port, () => {
 });
 
 function updateStreaks(newStreak, streaks){
-  let found = false;
-  for(const [i,preStreak] of streaks.entries()){
-    if(newStreak.streak > preStreak.streak){
-      streaks.splice(i,0,newStreak);
-      found = true;
-      break;
-    }
+  let currentUserStreak = streaks.find((s) => s.name === newStreak.name);
+  if (!currentUserStreak){
+    currentUserStreak = { 
+      name: newStreak.name, 
+      streak: 0,
+      practiceTimes: Array(7).fill("0"), 
+    };
+    streaks.push(currentUserStreak);
   }
-  if(!found){
-    streaks.push(newStreak);
-  }
-  if(streaks.length > 10){
-    streaks.length = 10;
-  }
+  currentUserStreak.streak = newStreak.streak;
+  currentUserStreak.practiceTimes = newStreak.practiceTimes;
   return streaks;
 }

@@ -33,7 +33,6 @@ export function Register(props) {
       const body = await response.json();
       localStorage.setItem('userName', userName);
       localStorage.setItem('token', body.token);
-      setToken(body.token);
       props.onAuthChange(userName, AuthState.Authenticated);
       navigate('/logpage');
       response.token

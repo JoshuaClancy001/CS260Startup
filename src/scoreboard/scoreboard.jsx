@@ -10,10 +10,11 @@ export function Scoreboard() {
   const userName = localStorage.getItem('userName');
 
   React.useEffect(() => {
-    const streaksText = localStorage.getItem('streaks');
-    if (streaksText) {
-      setStreaks(JSON.parse(streaksText));
-    }
+    fetch('/api/streaks')
+      .then((response) => response.json())
+      .then((streaks) => {
+        setStreaks(streaks);
+      });
   }, []);
 
   const sortedStreaks = [...streaks].sort((a, b) => b.streak - a.streak);

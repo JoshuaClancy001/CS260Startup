@@ -1,6 +1,4 @@
 import React from 'react';
-
-import 'bootstrap/dist/css/bootstrap.min.css';
 import { BrowserRouter, NavLink, Route, Routes } from 'react-router-dom';
 import { Login } from './login/login';
 import { Logpage } from './logpage/logpage'
@@ -10,6 +8,7 @@ import { Scoreboard } from './scoreboard/scoreboard'
 import { Friendslist } from './friendslist/friendslist'
 import { Home } from './home/home';
 import { GoogleDrive } from './googledrive/googledrive';
+import 'bootstrap/dist/css/bootstrap.min.css';
 import './app.css';
 import { AuthState } from './login/authState';
 

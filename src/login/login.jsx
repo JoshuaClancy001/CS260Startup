@@ -1,5 +1,5 @@
+
 import React, { useEffect } from 'react';
-import Form from 'react-bootstrap/Form';
 import { useNavigate } from 'react-router-dom';
 import { Unauthenticated } from './unauthenticated';
 import { Authenticated } from './authenticated';
@@ -46,7 +46,7 @@ export function Login(props) {
   return (
     <main className="main-container-login">
       <h2 className="loginHeader">Login</h2>
-      <Form onSubmit={handleEnter} className="login-form">
+      <form onSubmit={handleEnter} className="login-form">
         <div className="mb-3">
           <label htmlFor="exampleInputUsername1" className="form-label" style={{ fontFamily: 'Oleo Script, cursive' }}>
             Username
@@ -84,7 +84,7 @@ export function Login(props) {
         >
           Submit
         </button>
-      </Form>
+      </form>
       <br />
       <form onSubmit={handleExit}>
         <button

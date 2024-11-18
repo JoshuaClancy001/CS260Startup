@@ -1,5 +1,4 @@
 import React from 'react';
-import Form from 'react-bootstrap/Form';
 import { useNavigate } from 'react-router-dom';
 import { AuthState } from '../login/authState';
 import './register.css'
@@ -46,7 +45,7 @@ export function Register(props) {
   return (
     <main className="main-container-register">
   <h2>Create an Account</h2>
-  <Form onSubmit={handleEnter} className="login-form">
+  <form onSubmit={handleEnter} className="login-form">
     <div className="mb-3">
       <label htmlFor="exampleInputUsername1" className="form-label" 
       style={{ fontFamily: 'Oleo Script, cursive' }}>Username
@@ -68,7 +67,7 @@ export function Register(props) {
       <input type="email" className="form-control" id="exampleInputEmail1" />
     </div>
     <button type="submit" className="btn btn-primary" style={{ color: 'lightblue', backgroundColor: 'white', borderColor: 'white', fontFamily: 'Oleo Script, cursive' }}>Submit</button>
-  </Form>
+  </form>
   <br />
   <form onSubmit={handleExit}>
     <button type="submit" className="btn btn-success" 

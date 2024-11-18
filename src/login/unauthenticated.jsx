@@ -1,5 +1,4 @@
 import React from 'react';
-import Form from 'react-bootstrap/Form';
 import { useNavigate } from 'react-router-dom';
 import './login.css';
 
@@ -51,7 +50,7 @@ export function Unauthenticated(props) {
   return (
     <main className="main-container-login">
   <h2 className="loginHeader">Login</h2>
-  <Form onSubmit={handleEnter} className="login-form">
+  <form onSubmit={handleEnter} className="login-form">
     <div className="mb-3">
       <label htmlFor="exampleInputUsername1" className="form-label" style={{ fontFamily: 'Oleo Script, cursive' }}>
         Username
@@ -78,7 +77,7 @@ export function Unauthenticated(props) {
     >
       Submit
     </button>
-  </Form>
+  </form>
   <br />
   <form >
     <button type="submit" id="ExitButton" className="btn btn-success"

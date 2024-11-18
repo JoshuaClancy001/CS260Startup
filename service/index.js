@@ -1,12 +1,11 @@
 const express = require('express');
 const uuid = require('uuid');
-
 const app = express();
 
 let users = {};
 let streaks = [];
 
-const port = process.argv.length > 2 ? process.argv[2] : 3000;
+const port = process.argv.length > 2 ? process.argv[2] : 4000;
 
 app.use(express.json());
 

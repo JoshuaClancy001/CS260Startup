@@ -53,34 +53,36 @@ export function Logpage() {
 
   // Function to handle practice time changes
   const handleTimeChange = (dayNumber, value) => {
-    const newTimes = [...practiceTimes];
-    const oldValue = newTimes[dayNumber];
-    newTimes[dayNumber] = value;
-    setPracticeTimes(newTimes);
-    // localStorage.setItem("times", JSON.stringify(newTimes));
-
-    // Update streak based on new practice times
-    let streak = userStreak;
-
-    if (value !== "0") {
-      
-      if (dayNumber > 0 && newTimes[dayNumber - 1] !== "0") {
-        if (oldValue === "0") {
+    setPracticeTimes((prevTimes) => {
+      const newTimes = [...prevTimes];
+      const oldValue = newTimes[dayNumber];
+      newTimes[dayNumber] = value;
+  
+      // Update streak based on new practice times
+      let streak = userStreak;
+  
+      if (value !== "0") {
+        if (dayNumber > 0 && prevTimes[dayNumber - 1] !== "0") {
+          if (oldValue === "0") {
+            streak += 1;
+          }
+        } else if (dayNumber > 0 && prevTimes[dayNumber - 1] === "0") {
+          streak = 1;
+        } else {
           streak += 1;
         }
-      } else if (dayNumber > 0 && newTimes[dayNumber - 1] === "0") {
-        streak = 1;
       } else {
-        streak += 1;
+        streak = 0; // Reset streak if practice time is 0
       }
-    } else {
-      streak = 0; // Reset streak if practice time is 0
-    }
-
-    // Update streak and practiceTimes in localStorage
-    saveStreak(streak, newTimes);
-    setUserStreak(streak);
+  
+      // Update streak and practiceTimes in localStorage
+      saveStreak(streak, newTimes);
+      setUserStreak(streak);
+  
+      return newTimes; // Return the updated times
+    });
   };
+  
 
   // Function to save streak and update the localStorage streaks list
   
@@ -162,7 +164,7 @@ export function Logpage() {
               <tr key={day}>
                 <td style={{ border: '1px solid black' }}>{day}</td>
                 <td style={{ border: '1px solid black' }}>
-                  <select value={practiceTimes[index]} onChange={(e) => handleTimeChange(index, e.target.value)} >
+                  <select value={practiceTimes[index]} onChange={(e) => handleTimeChange(index, e.target.value)} disabled={index !== currentDayIndex} >
                     <option value="0">{practiceTimes[index] === "0" ? "0 minutes" : `${practiceTimes[index]} minutes`}</option>
                     <option value="15">15 minutes</option>
                     <option value="30">30 minutes</option>

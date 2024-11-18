@@ -1,6 +1,7 @@
 import React from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import Table from 'react-bootstrap/Table';
+
+'use client';
 import { useNavigate } from 'react-router-dom';
 import './scoreboardpage.css';
 
@@ -59,7 +60,7 @@ export function Scoreboard() {
       <h3 className="display-username" style={{ fontFamily: 'Oleo Script, cursive' }}>{userName}</h3>
       <h2 id="h2-scoreboard">Scoreboard</h2>
       
-      <Table 
+      <table 
         className="table table-warning table-striped-columns" 
         style={{ 
           backgroundColor: 'lightgreen !important',
@@ -80,7 +81,7 @@ export function Scoreboard() {
         <tbody>
           {scoreRows}
         </tbody>
-      </Table>
+      </table>
 
       
     </main>

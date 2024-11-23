@@ -38,7 +38,7 @@ export function Register(props) {
     }
     else{
       const body = await response.json();
-      setDisplayError(`⚠ Error: ${body.msg}`);
+      alert(`⚠ Error: ${body.msg}`);
     }
   }
 

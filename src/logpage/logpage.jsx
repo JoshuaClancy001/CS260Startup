@@ -164,7 +164,7 @@ export function Logpage() {
               <tr key={day}>
                 <td style={{ border: '1px solid black' }}>{day}</td>
                 <td style={{ border: '1px solid black' }}>
-                  <select value={practiceTimes[index]} onChange={(e) => handleTimeChange(index, e.target.value)} disabled={index !== currentDayIndex} >
+                  <select value={practiceTimes[index]} onChange={(e) => handleTimeChange(index, e.target.value)}  >
                     <option value="0">{practiceTimes[index] === "0" ? "0 minutes" : `${practiceTimes[index]} minutes`}</option>
                     <option value="15">15 minutes</option>
                     <option value="30">30 minutes</option>
@@ -181,3 +181,6 @@ export function Logpage() {
     </main>
   );
 }
+
+
+// disabled={index !== currentDayIndex}

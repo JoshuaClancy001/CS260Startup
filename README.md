@@ -119,3 +119,16 @@ For this deliverable I built out the structure of my application using HTML
    - Backend provides endpoints for login,create,logout,getStreaks,updateStreaks
 - **Frontend calls your service endpoints**
    - frontend uses fetch to call service endpoints for login,create,logout,getStreaks,updateStreaks
+
+## Login/DB Deliverable 
+
+- **Supports new user Registration**
+   - User can register and information is stored in the database for persistance. Does not allow for a blank username or password
+- **Supports existing user authentication**
+   - User can login and be reauthenticated by being given a new authToken stored in the database
+- **Stores application data in MongoDB**
+   - Streaks and practice times are updated and stored inside the database
+- **Stores and retrieves credentials in MongoDB**
+   - Users and their passwords(encrypted) are stored in the database upon registering and retreived upon loging in
+- **Restricts application functionality based upon authentication**
+   - Logpage(Home),Scoreboard,UsersList and by extention messaging page, are all unavailable until user is either already in the database and authenticated, or added to the database and authenticated 

@@ -22,6 +22,9 @@ app.use(`/api`, apiRouter);
 
 apiRouter.post('/auth/create', async (req, res) => {
 
+  if (req.body.name.trim() === '' || req.body.password.trim() === ''){
+    res.status(400).send({ msg: 'Missing Username or Password' });
+  }
   if (await DB.getUser(req.body.name)){
     res.status(409).send({ msg: 'Existing user' });
   }

@@ -4,6 +4,7 @@ const express = require('express');
 const uuid = require('uuid');
 const app = express();
 const DB = require('./database.js');
+const { serverWebsocket } = require('./serverWebsocket.js');
 
 const authCookieName = 'token';
 
@@ -93,9 +94,12 @@ function setAuthCookie(res, token){
   });
 }
 
-app.listen(port, () => {
+const httpService = app.listen(port, () => {
   console.log(`Listening on port ${port}`);
 });
+
+peerProxy(httpService);
+
 
 // function updateStreaks(newStreak, streaks){
 //   let currentUserStreak = streaks.find((s) => s.name === newStreak.name);

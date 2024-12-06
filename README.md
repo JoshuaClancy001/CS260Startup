@@ -132,3 +132,16 @@ For this deliverable I built out the structure of my application using HTML
    - Users and their passwords(encrypted) are stored in the database upon registering and retreived upon loging in
 - **Restricts application functionality based upon authentication**
    - Logpage(Home),Scoreboard,UsersList and by extention messaging page, are all unavailable until user is either already in the database and authenticated, or added to the database and authenticated 
+
+
+## Websocket Deliverable
+- **Backend listens for WebSocket connection**
+   - Backed sets up event listeners to listen for websocket messages from the front end
+- **Frontend makes WebSocket connection**
+   - Front makes a websocket connection so it can talk with other clients through the backend
+- **Data sent over WebSocket connection**
+   - messages sent from each client is sent through websocket
+- **WebSocket data displayed in the application interface**
+   - messages sent by each client show up for them and the person they sent the messages to
+- **All visible elements are working**
+   - The only thing that wasnt working from the last deliverable was the websocket

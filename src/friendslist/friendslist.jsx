@@ -10,12 +10,12 @@ export function Friendslist() {
 
   const navigate = useNavigate();
 
-  const userName = localStorage.getItem('userName');
+  const userName = sessionStorage.getItem('userName');
 
 
   const handleMessage = (event, name) => {
     event.preventDefault();
-    localStorage.setItem('receiver', name);
+    sessionStorage.setItem('receiver', name);
     navigate('/messagepage');
   }
 
@@ -44,7 +44,7 @@ export function Friendslist() {
   const scoreRows = [];
   if (otherUsers.length) {
     for (const [i, score] of sortedStreaks.entries()) {
-      if (score.name !== localStorage.getItem('userName')) {
+      if (score.name !== sessionStorage.getItem('userName')) {
       scoreRows.push(
         <tr key={i}>
           <td>{i+1}</td>

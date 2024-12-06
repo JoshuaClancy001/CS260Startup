@@ -7,7 +7,7 @@ import './login.css';
 
 export function Authenticated(props) {
 
-  const [userName, setUserName] = React.useState(localStorage.getItem('userName') || '');
+  const [userName, setUserName] = React.useState(sessionStorage.getItem('userName') || '');
   const [password, setPassword] = React.useState(localStorage.getItem('password') || '');
   const [token, setToken] = React.useState(localStorage.getItem('token') || '');
   const navigate = useNavigate();
@@ -21,7 +21,7 @@ export function Authenticated(props) {
       },
     });
     if (response?.status === 200){
-      localStorage.setItem('userName', userName);
+      sessionStorage.setItem('userName', userName);
       props.onAuthChange(userName, AuthState.Authenticated);
       navigate('/logpage');
     }
@@ -31,7 +31,7 @@ export function Authenticated(props) {
     }
 
 
-    localStorage.removeItem('userName');
+    sessionStorage.removeItem('userName');
     props.onLogout();
   }
 

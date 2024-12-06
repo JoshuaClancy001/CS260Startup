@@ -4,7 +4,7 @@ import './logpage.css';
 
 export function Logpage() {
   const navigate = useNavigate();
-  const [userName, setUserName] = useState(localStorage.getItem('userName'));
+  const [userName, setUserName] = useState(sessionStorage.getItem('userName'));
   const [practiceTimes, setPracticeTimes] = useState(Array(7).fill("0"));
   const [userStreak, setUserStreak] = useState(0);
   const [allStreaks, setAllStreaks] = React.useState([])  // Default streak to 0 initially

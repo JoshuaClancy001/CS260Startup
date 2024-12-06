@@ -32,6 +32,7 @@ export function Login(props) {
     });
     if (response?.status === 200){
       const body = await response.json();
+      sessionStorage.setItem('userName', userName);
       localStorage.setItem('userName', userName);
       localStorage.setItem('token', body.token);
       props.onAuthChange(userName, AuthState.Authenticated);

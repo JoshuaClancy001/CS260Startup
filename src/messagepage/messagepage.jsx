@@ -2,26 +2,29 @@ import React from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './message.css';
 import { useNavigate } from 'react-router-dom';
-import { messageEvent, EventMessage, MessageNotifier } from './messageNotifier';
-import e from 'express';
+import { messageEvent, MessageNotifier } from './messageNotifier';
+
 
 export function Messagepage() {
 
-  const userName = localStorage.getItem('userName');
-  const receiver = localStorage.getItem('receiver');
-  const message = React.useState('')
+  const userName = sessionStorage.getItem('userName');
+  const receiver = sessionStorage.getItem('receiver');
+
   const [events, setEvent] = React.useState([]);
   const navigate = useNavigate();
 
   React.useEffect(() => {
-    GameNotifier.addHandler(handleGameEvent);
+    MessageNotifier.addHandler(handleGameEvent);
 
     return () => {
-      GameNotifier.removeHandler(handleGameEvent);
+      MessageNotifier.removeHandler(handleGameEvent);
     };
   });
 
   function handleGameEvent(event) {
+    if (length(events) > 10) {
+      events.pop();
+    }
     setEvent([...events, event]);
   }
 
@@ -29,19 +32,10 @@ export function Messagepage() {
     const messageArray = [];
     for (const [i, event] of events.entries()) {
       let message = 'unknown';
-      if (event.type === GameEvent.End) {
-        message = `scored ${event.value.score}`;
-      } else if (event.type === GameEvent.Start) {
-        message = `started a new game`;
-      } else if (event.type === GameEvent.System) {
-        message = event.value.msg;
-      }
+      message = event.value;
 
       messageArray.push(
-        <div key={i} className='event'>
-          <span className={'player-event'}>{event.from.split('@')[0]}</span>
-          {message}
-        </div>
+        <span key={i}>{`${event.sender}: ${event.value}`}</span>
       );
     }
     return messageArray;
@@ -54,25 +48,26 @@ export function Messagepage() {
     navigate('/friendslist');
   };
 
-  const sendMessgage = (event) => {
+  const sendMessage = (event) => {
     event.preventDefault();
     const message = event.target[0].value;
-    const eventMessage = new EventMessage(userName, receiver, message);
-    MessageNotifier.broadcastEvent(eventMessage);
+    MessageNotifier.broadcastEvent(userName, receiver, message);
   }
 
   return (
     <main className="main-container">
       <h3 className="display-username" style={{ fontFamily: 'Oleo Script, cursive' }}>{userName}</h3>
-      
+      <div id='player-messages'>{createMessageArray()}</div>
+      <div className='message-stuff'>
       <span>Messaging {receiver}</span>
-      <form onSubmit={sendMessgage}>
-      <input type="text" placeholder="type a message" />
+      <form  onSubmit={sendMessage}>
+        <input type="text" name="message" placeholder="type a message" />
+        <button className='submit-button' type="submit">Send</button>
       </form>
-      <button type="submi">Send</button>
-      <form onSubmit={handleExit}>
+      <form className='exit-button' onSubmit={handleExit}>
         <button type="submit">Exit</button>
       </form>
+      </div>
     </main>
   );
 }

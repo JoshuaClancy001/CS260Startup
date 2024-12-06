@@ -14,7 +14,7 @@ import { AuthState } from './login/authState';
 
 export default function App() {
 
-    const [userName, setUserName] = React.useState(localStorage.getItem('userName') || '')
+    const [userName, setUserName] = React.useState(sessionStorage.getItem('userName') || '')
     const [password, setPassword] = React.useState('');
     const [token, setToken] = React.useState(localStorage.getItem('token') || undefined);
     const currentAuthState = userName ? AuthState.Authenticated : AuthState.Unauthenticated;
@@ -33,7 +33,7 @@ export default function App() {
         if (response?.status === 204){
           setAuthState(AuthState.Unauthenticated);
           setUserName('');
-          localStorage.removeItem('userName');
+          sessionStorage.removeItem('userName');
           localStorage.removeItem('token');
           navigate('/');
         }

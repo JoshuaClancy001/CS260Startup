@@ -8,7 +8,7 @@ import './scoreboardpage.css';
 export function Scoreboard() {
 
   const [streaks, setStreaks] = React.useState([]);
-  const userName = localStorage.getItem('userName');
+  const userName = sessionStorage.getItem('userName');
 
   React.useEffect(() => {
     

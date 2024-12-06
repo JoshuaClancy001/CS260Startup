@@ -8,7 +8,7 @@ const { serverWebsocket } = require('./serverWebsocket.js');
 
 const authCookieName = 'token';
 
-const port = process.argv.length > 2 ? process.argv[2] : 4000;
+const port = process.argv.length > 2 ? process.argv[2] : 3000;
 
 app.use(express.json());
 
@@ -98,7 +98,7 @@ const httpService = app.listen(port, () => {
   console.log(`Listening on port ${port}`);
 });
 
-peerProxy(httpService);
+serverWebsocket(httpService);
 
 
 // function updateStreaks(newStreak, streaks){

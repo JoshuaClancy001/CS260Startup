@@ -18,9 +18,7 @@ function serverWebsocket(httpServer) {
 
         ws.on('message', function message(data) {
             connections.forEach((c) => {
-                if (c.id !== connection.id) {
                     c.ws.send(data);
-                }
             });
         });
 
@@ -36,4 +34,17 @@ function serverWebsocket(httpServer) {
             connection.alive = true;
         });
     })
+    setInterval(() => {
+        connections.forEach((c) => {
+          // Kill any connection that didn't respond to the ping last time
+          if (!c.alive) {
+            c.ws.terminate();
+          } else {
+            c.alive = false;
+            c.ws.ping();
+          }
+        });
+      }, 10000);
 }
+
+module.exports = { serverWebsocket };

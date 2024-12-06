@@ -22,10 +22,10 @@ export function Messagepage() {
   });
 
   function handleGameEvent(event) {
-    if (length(events) > 10) {
+    if (events.length > 11) {
       events.pop();
     }
-    setEvent([...events, event]);
+    setEvent([event,...events]);
   }
 
   function createMessageArray() {
@@ -34,10 +34,14 @@ export function Messagepage() {
       let message = 'unknown';
       message = event.value;
 
+      if (event.sender === receiver || event.receiver === userName || event.sender === userName || event.receiver === receiver) {
       messageArray.push(
-        <span key={i}>{`${event.sender}: ${event.value}`}</span>
+        <span key={i}>
+          <span style={{ color: 'blue',fontSize: '1em' }}>{event.sender}</span>: {event.value}
+        </span>
       );
     }
+  }
     return messageArray;
   }
 

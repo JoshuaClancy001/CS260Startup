@@ -11,8 +11,9 @@
     align-items: center;
     justify-content: left;
     position: relative;
-    top: 10%;
-    left: 0%;
+    max-width: 500px;
+    top: 5%;
+    left: -10%;
     padding: 20px;
     height: calc(100vh - 150px);
 }
@@ -34,6 +35,7 @@
     left: 20%;
     padding: 20px;
     height: calc(100vh - 150px);
+    
 }
 .main-container span {
     font-family: 'Oleo Script', cursive;
@@ -43,11 +45,11 @@
 
 .submit-button {
     position: relative;
-    right: -19%;
+    right: -20%;
 }
 .exit-button {
     position: relative;
-    right: 7%;
+    right: 6%;
 }
 
 .form{

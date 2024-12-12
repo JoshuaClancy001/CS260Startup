@@ -48,7 +48,7 @@ export function Friendslist() {
       scoreRows.push(
         <tr key={i}>
           <td>{i+1}</td>
-          <td>{score.name.split('@')[0]}</td>
+          <td>{score.name}</td>
           <td>{score.streak}</td>
           <td>
           <form onSubmit={(event) => handleMessage(event, score.name)}>

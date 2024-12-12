@@ -36,7 +36,7 @@ export function Scoreboard() {
       scoreRows.push(
         <tr key={i}>
           <td>{i+1}</td>
-          <td>{score.name.split('@')[0]}</td>
+          <td>{score.name}</td>
           <td>{score.streak}</td>
         </tr>
       );

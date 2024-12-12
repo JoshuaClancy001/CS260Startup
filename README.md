@@ -136,7 +136,7 @@ For this deliverable I built out the structure of my application using HTML
 
 ## Websocket Deliverable
 - **Backend listens for WebSocket connection**
-   - Backed sets up event listeners to listen for websocket messages from the front end
+   - Backed sets up event listeners to listen for websocket messages from the front end.
 - **Frontend makes WebSocket connection**
    - Front makes a websocket connection so it can talk with other clients through the backend
 - **Data sent over WebSocket connection**

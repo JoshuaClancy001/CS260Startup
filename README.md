@@ -140,7 +140,7 @@ For this deliverable I built out the structure of my application using HTML
 - **Frontend makes WebSocket connection**
    - Front makes a websocket connection so it can talk with other clients through the backend
 - **Data sent over WebSocket connection**
-   - messages sent from each client is sent through websocket
+   - messages sent from each client is sent through websocket.
 - **WebSocket data displayed in the application interface**
    - messages sent by each client show up for them and the person they sent the messages to. Including private messages between users
 - **All visible elements are working**

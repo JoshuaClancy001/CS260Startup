@@ -142,6 +142,6 @@ For this deliverable I built out the structure of my application using HTML
 - **Data sent over WebSocket connection**
    - messages sent from each client is sent through websocket
 - **WebSocket data displayed in the application interface**
-   - messages sent by each client show up for them and the person they sent the messages to
+   - messages sent by each client show up for them and the person they sent the messages to. Including private messages between users
 - **All visible elements are working**
-   - The only thing that wasnt working from the last deliverable was the websocket
+   - The only thing that wasnt working from the last deliverable was the websocket.

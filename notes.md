@@ -1002,3 +1002,139 @@ coinToss
 //    Coin toss result: tails
 //    Toss completed
 ```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+---
+
+### **Networking**
+
+1. **Default Ports**:
+   - **HTTP**: Port 80  
+   - **HTTPS**: Port 443  
+   - **SSH**: Port 22  
+
+2. **HTTP Status Code Ranges**:
+   - **300** (Redirection): Indicates the client must take additional action to complete the request (e.g., redirect to another URL).
+   - **400** (Client Error): Indicates an error in the request (e.g., bad syntax or unauthorized access).
+   - **500** (Server Error): Indicates a server-side issue (e.g., an internal server error).
+
+3. **HTTP Header `Content-Type`**:
+   - Specifies the media type of the resource or data being sent (e.g., `application/json`, `text/html`). It allows the server and client to interpret the data correctly.
+
+4. **Cookies**:
+   - **Secure Cookie**: Sent only over HTTPS, ensuring confidentiality and integrity.
+   - **Http-Only Cookie**: Cannot be accessed via JavaScript, reducing the risk of XSS attacks.
+   - **Same-Site Cookie**: Restricts cookies to first-party or same-site requests, mitigating CSRF attacks.
+
+---
+
+### **Express.js**
+
+1. **Console Log Output for Middleware**:
+   Assuming middleware processes a GET request with the URL path `/api/document`, the specific output depends on what the middleware logs. If middleware logs `req.method` and `req.url`, the output would be:
+   ```
+   GET /api/document
+   ```
+
+2. **Front-End Fetch with Express Service**:
+   The response from `fetch` depends on the server-side Express code and what it returns. Typically, the `fetch` function resolves to a `Response` object. If the server responds with JSON, `fetch` would return parsed JSON data after calling `.json()`.
+
+---
+
+### **MongoDB**
+
+1. **Query `{name: "Mark"}`**:
+   - Selects all documents in the collection where the `name` field equals `"Mark"`.
+
+2. **Storing User Passwords**:
+   - Passwords should always be **hashed and salted** using algorithms like bcrypt, Argon2, or PBKDF2 to ensure security.
+
+---
+
+### **WebSockets**
+
+1. **Front-End Console Log**:
+   The specific output depends on the server logic and what the WebSocket sends. Typically, it logs received messages or events.
+
+2. **WebSocket Protocol Purpose**:
+   - Provides a persistent, full-duplex communication channel between the client and server for real-time data exchange.
+
+---
+
+### **Acronyms**
+
+- **JSX**: JavaScript XML
+- **JS**: JavaScript
+- **AWS**: Amazon Web Services
+- **NPM**: Node Package Manager
+- **NVM**: Node Version Manager
+
+---
+
+### **React**
+
+1. **Generated Text from React Component**:
+   - The output depends on the specific React component and its parameters. Generally, it renders content dynamically based on props or state.
+
+2. **Components Including Each Other**:
+   - The DOM structure depends on the hierarchy and rendering logic of the components.
+
+3. **React `useState`**:
+   - Allows you to add state to functional components.
+
+4. **React Hooks**:
+   - **State Hook**: Manages state in a functional component.
+   - **Context Hook**: Provides a way to share data between components without prop drilling.
+   - **Ref Hook**: Allows direct DOM manipulation or persisting mutable values.
+   - **Effect Hook**: Manages side effects (e.g., fetching data, updating the DOM).
+   - **Performance Hook**: Optimizes rendering and performance.
+
+---
+
+### **React Router**
+
+- Statements about React Router vary depending on the routing logic. It enables declarative navigation in React applications.
+
+---
+
+### **Node.js and Tools**
+
+1. **`package.json`**:
+   - Defines a Node.js project’s metadata, dependencies, and scripts.
+
+2. **`fetch`**:
+   - Performs HTTP requests and returns a `Promise` resolving to a `Response` object.
+
+3. **Node.js**:
+   - A runtime environment for executing JavaScript server-side.
+
+4. **PM2**:
+   - A process manager for Node.js applications that supports load balancing, monitoring, and restarting.
+
+5. **Vite**:
+   - A fast build tool and development server optimized for modern JavaScript frameworks like React and Vue.
+
+--- 
+
+Let me know if you'd like further elaboration or examples!
